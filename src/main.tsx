@@ -6,10 +6,24 @@ import store from './store/store';
 import App from './App';
 import './index.css';
 
+// Pages
+import Dashboard from './pages/Dashboard';
+import Schedule from './pages/Schedule';
+import ErrorPage from './pages/404';
+
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement: <div>404</div>,
+    children: [
+      { index: true, element: <Dashboard /> },
+      { path: '/schedule', element: <Schedule /> },
+      {
+        path: '/*',
+        element: <ErrorPage />,
+      },
+    ],
   },
 ]);
 

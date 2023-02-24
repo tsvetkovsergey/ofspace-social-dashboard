@@ -1,14 +1,21 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PopupItem from '../Types/PopupItem';
 
 type Props = {
   items: PopupItem[];
   onClose: () => void;
+  onChange?: (itemId: string) => void;
 };
 
-const Popup = ({ items, onClose }: Props) => {
+const PopupMenu = ({ items, onClose, onChange }: Props) => {
   const popupRef = useRef<HTMLUListElement>(null);
   const [firstClick, setFirstClick] = useState(true);
+
+  const itemClickHandler = (event: React.MouseEvent, itemId: string) => {
+    event.stopPropagation();
+    onChange && onChange(itemId);
+    onClose();
+  };
 
   useEffect(() => {
     const clickHandler = (ev: MouseEvent) => {
@@ -31,10 +38,15 @@ const Popup = ({ items, onClose }: Props) => {
       className="absolute top-full right-0 z-20 mt-2 cursor-default rounded-lg border-[1px] border-primary-220 bg-primary-200 py-2 text-left text-sm text-typo-700 shadow-lg"
       ref={popupRef}
     >
-      {items.map((item, index) => (
+      {items.map((item) => (
         <li
-          key={index}
-          className="cursor-pointer bg-primary-200 py-2 pl-4 pr-10 hover:bg-primary-210"
+          key={item.id}
+          className={`${
+            item.isActive
+              ? 'bg-primary-250 hover:bg-primary-260'
+              : 'bg-primary-200 hover:bg-primary-210'
+          } cursor-pointer py-2 pl-4 pr-10`}
+          onClick={(event) => itemClickHandler(event, item.id)}
         >
           {item.title}
         </li>
@@ -43,4 +55,4 @@ const Popup = ({ items, onClose }: Props) => {
   );
 };
 
-export default Popup;
+export default PopupMenu;

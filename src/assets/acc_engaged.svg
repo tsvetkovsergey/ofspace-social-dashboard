@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="396mm"
+   height="164.96519mm"
+   viewBox="0 0 396 164.96519"
+   version="1.1"
+   id="svg5"
+   inkscape:export-filename="acc_reached.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   sodipodi:docname="acc_engaged.svg"
+   inkscape:version="1.2.2 (b0a84865, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.73243855"
+     inkscape:cx="721.56224"
+     inkscape:cy="365.901"
+     inkscape:window-width="1219"
+     inkscape:window-height="770"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1"
+     showguides="false" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-32.005899,-10.970632)">
+    <path
+       style="fill:#eeb07a;fill-opacity:1;stroke:none;stroke-width:0.678263px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 32.005899,11.425111 V 121.99791 c 107.316071,44.42308 113.852751,-15.23774 162.382111,-10.28023 43.38783,4.43229 80.96437,57.60908 133.25341,64.21816 62.6114,-0.64383 100.3645,-32.03216 100.3645,-32.03216 V 12.40572 l -0.66781,-1.435088 z"
+       id="path1757"
+       sodipodi:nodetypes="ccsccccc"
+       inkscape:export-filename="./path1757.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+  </g>
+</svg>
