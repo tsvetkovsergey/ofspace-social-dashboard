@@ -20,8 +20,8 @@ const CardMenu = ({ items, onChange }: Props) => {
   return (
     <button
       className={`${
-        isPopupOpened ? 'shadow-lg' : 'hover:shadow-lg'
-      } relative flex h-8 items-center rounded-lg bg-primary-100 px-2 transition `}
+        isPopupOpened ? 'z-10 shadow-lg' : 'hover:z-10 hover:shadow-lg'
+      } relative flex h-8 items-center rounded-lg bg-primary-100 px-2 transition dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:shadow-none `}
       onClick={() => setIsPopupOpened(true)}
     >
       <p className="text-xs text-typo-500">{buttonText}</p>

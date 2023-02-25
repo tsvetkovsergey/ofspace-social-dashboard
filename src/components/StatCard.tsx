@@ -1,3 +1,5 @@
+import RoundIcon from './RoundIcon';
+
 type Props = {
   icon: JSX.Element;
   title: string;
@@ -11,11 +13,7 @@ const StatCard = ({ icon, title, text, cardStyle, iconStyle }: Props) => {
     <div
       className={`flex items-center gap-2 rounded-xl bg-white p-4 shadow-lg ${cardStyle}`}
     >
-      <i
-        className={`mr-1 flex h-11 w-11 items-center justify-center overflow-hidden rounded-full ${iconStyle}`}
-      >
-        {icon}
-      </i>
+      <RoundIcon icon={icon} iconStyle={iconStyle} />
       <div>
         <h3 className="text-sm font-medium">{title}</h3>
         <p className="mt-1 text-sm font-extralight text-typo-600">{text}</p>

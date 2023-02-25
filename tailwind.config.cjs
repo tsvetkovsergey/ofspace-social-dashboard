@@ -40,11 +40,32 @@ module.exports = {
           110: '#fdf7f2',
           200: '#00d0ff',
         },
+        primary_dark: {
+          400: '#3a3a3a',
+          500: '#2c2c2c',
+          // 600: '#1f1f1f',
+          600: '#131224',
+          610: '#171717',
+          700: '#050505',
+        },
+        additional_dark: {
+          500: '#5336dc',
+        },
+        typo_dark: {
+          300: '#d4d4d4',
+          400: '#d3d3d3',
+          500: '#d1d1d1',
+          600: '#959595',
+          700: '#828282',
+        },
       },
       boxShadow: {
         offset:
           // '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
           '0 10px 15px 5px rgb(0 0 0 / 0.1), 0 4px 6px 3px rgb(0 0 0 / 0.1)',
+        lg_dark:
+          '2px 3px 5px 1px rgba(182,71,197,0.5), 0 4px 6px -4px rgba(182,71,197,0.8)',
+        sm_dark: '0px 0px 5px 2px rgba(75,158,235,0.5)',
       },
       transitionProperty: {
         sidebarIcon: 'box-shadow, background-color, outline-color',
@@ -58,6 +79,12 @@ module.exports = {
           'url("/src/assets/avrg_reached.svg"), linear-gradient(180deg, rgba(0,190,232,1) 0%, rgba(19,212,255,1) 100%)',
         'average-engaged':
           'url("/src/assets/avrg_engaged.svg"), linear-gradient(180deg, rgba(249,78,111,1) 0%, rgba(228,51,93,1) 100%)',
+        searchbar_dark:
+          'linear-gradient(45deg, rgba(80,80,80,1) 0%, rgba(62,62,62,1) 100%)',
+        searchbar_dark_hover:
+          'linear-gradient(45deg, rgba(60,42,178,1) 0%, rgba(133,28,173,1) 100%)',
+        sidebar_dark:
+          'linear-gradient(100deg, rgba(62,62,62,1) 0%, rgba(45,45,45,1) 100%)',
       },
     },
   },

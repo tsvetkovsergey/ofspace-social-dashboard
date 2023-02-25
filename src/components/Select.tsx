@@ -48,8 +48,8 @@ const Select = ({ activeItemID, onChange, options }: Props) => {
   return (
     <button
       className={`${
-        isOpen ? 'shadow-lg' : 'hover:shadow-lg'
-      } relative flex h-8 items-center rounded-lg bg-primary-100 px-2 transition`}
+        isOpen ? 'z-10 shadow-lg' : 'hover:z-10 hover:shadow-lg'
+      } relative flex h-8 items-center rounded-lg bg-primary-100 px-2 transition dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:shadow-none`}
       onClick={() => setIsOpen(true)}
     >
       <p className="text-xs text-typo-500">{buttonText}</p>

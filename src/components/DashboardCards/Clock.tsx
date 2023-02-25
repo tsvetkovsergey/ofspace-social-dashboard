@@ -30,22 +30,23 @@ const getCurrentTimeDegrees = (): { minutesDeg: number; hoursDeg: number } => {
 };
 
 const Clock = (props: Props) => {
-  const [hoursDegree, setHoursDegree] = useState<number>(0);
-  const [minutesDegree, setMinutesDegree] = useState<number>(0);
+  // const [hoursDegree, setHoursDegree] = useState<number>(0);
+  // const [minutesDegree, setMinutesDegree] = useState<number>(0);
   const hourHandRef = useRef<HTMLImageElement>(null);
   const minuteHandRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    const timer = (function setDegrees() {
+    const setDegrees = () => {
       const { minutesDeg, hoursDeg } = getCurrentTimeDegrees();
 
       if (hourHandRef.current && minuteHandRef.current) {
         hourHandRef.current.style.transform = `translateX(50%) rotate(${hoursDeg}deg)`;
         minuteHandRef.current.style.transform = `translateX(50%) rotate(${minutesDeg}deg)`;
       }
-      // Check for current time every 15 secs
-      return setInterval(() => setDegrees, 15000);
-    })();
+    };
+
+    // Check for current time every second
+    const timer = setInterval(setDegrees, 1000);
 
     // Clear interval before component unmounts
     return () => clearInterval(timer);

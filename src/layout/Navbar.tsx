@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectMode, toggle } from '../store/themeSlice';
+import { ReactSVG } from 'react-svg';
 import { ThemeMode } from '../Types/Theme';
 import { Link } from 'react-router-dom';
 import IconButton from '../components/IconButton';
@@ -12,11 +13,14 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Search from '@mui/icons-material/Search';
 import QuestionMark from '@mui/icons-material/QuestionMark';
 
-import profileImage from '../assets/profile.jpg';
-import logo from '../assets/logo.jpg';
+import profileImage from '../assets/profile_2.png';
+import logoLight from '../assets/logo_light.png';
+import logoDark from '../assets/logo_dark.png';
+import logoVector from '../assets/logo_vector.svg';
 import PopupMenu from '../components/PopupMenu';
 import { Language } from '../Types/Settings';
 import { selectLanguage, setLanguage } from '../store/settingsSlice';
+import RoundIcon from '../components/RoundIcon';
 
 const ExpandMoreIconComponent = (): JSX.Element => (
   <ExpandMoreIcon
@@ -56,22 +60,32 @@ const Navbar = () => {
   )?.title;
 
   return (
-    <div className="relative top-0 left-0 z-10 flex h-24 flex-[0_0_6rem] items-center justify-between bg-white shadow-lg">
+    <div className="relative top-0 left-0 z-10 flex h-24 flex-[0_0_6rem] items-center justify-between bg-white shadow-lg dark:bg-slate-900 dark:shadow-none">
       {/* LEFT SIDE */}
 
       <div className="flex items-center">
         {/* Logo */}
         <Link to="/" className="mx-8">
-          <img className="h-8 w-8" src={logo} alt="logo" />
+          {/* <img className="h-8 w-8 text-blue-500" src={logoVector} alt="logo" /> */}
+          <ReactSVG
+            src={logoVector}
+            className="h-8 w-8"
+            beforeInjection={(svg) => {
+              svg.classList.add(
+                'stroke-secondary-500',
+                'dark:stroke-typo_dark-500'
+              );
+            }}
+          />
         </Link>
 
         {/* Heading */}
         <div className="mx-8">
-          <h1 className="text-lg font-bold text-typo-800">
+          <h1 className="text-lg font-bold text-typo-800 dark:text-purple-500">
             Welcome to Dashboard
           </h1>
-          <button className="-ml-2 flex items-center rounded-lg py-1 px-2 transition hover:bg-primary-200 hover:shadow-lg">
-            <p className="text-sm text-typo-600">{`${date.getDate()} ${date.toLocaleDateString(
+          <button className="-ml-2 flex items-center rounded-lg py-1 px-2 text-typo-600 transition hover:bg-primary-200 hover:shadow-lg dark:hover:bg-blue-500 dark:hover:text-white dark:hover:shadow-none">
+            <p className="text-sm ">{`${date.getDate()} ${date.toLocaleDateString(
               'en',
               { month: 'long' }
             )} ${date.getFullYear()}`}</p>
@@ -83,11 +97,11 @@ const Navbar = () => {
       {/* RIGHT SIDE */}
       <div className="flex items-center">
         {/* Search Input */}
-        <div className="relative mr-2 flex items-center rounded-lg bg-primary-200 transition hover:shadow-lg">
+        <div className="group relative mr-2 flex items-center rounded-lg bg-primary-200 transition hover:shadow-lg dark:bg-slate-800 dark:hover:bg-blue-500">
           <input
             className={`${
               searchInputText ? 'w-36' : 'w-[11rem]'
-            } bg-transparent py-2 pl-4 text-sm text-typo-600 placeholder:text-typo-400 autofill:rounded-lg autofill:shadow-[inset_0_0_0_100px_#eff2fa] focus:outline-none`}
+            } bg-transparent py-2 pl-4 text-sm text-typo-600 placeholder:text-typo-400 placeholder:transition autofill:rounded-lg autofill:shadow-[inset_0_0_0_100px_#eff2fa] autofill:transition focus:outline-none dark:text-white dark:placeholder:text-typo_dark-700 dark:autofill:shadow-[inset_0_0_0_100px_#1e293b] dark:group-hover:placeholder:text-white dark:group-hover:autofill:shadow-[inset_0_0_0_100px_#3b82f6]`}
             type="text"
             name="search"
             value={searchInputText}
@@ -97,7 +111,7 @@ const Navbar = () => {
           <button disabled={!searchInputText}>
             {searchInputText && (
               <Clear
-                className="text-typo-400"
+                className="text-typo-400 dark:text-white"
                 sx={{
                   height: '1.4rem',
                   width: '1.4rem',
@@ -113,7 +127,7 @@ const Navbar = () => {
           )}
           <button>
             <Search
-              className="text-typo-400"
+              className="text-typo-400 dark:text-white"
               sx={{
                 height: '1.4rem',
                 width: '1.4rem',
@@ -127,11 +141,12 @@ const Navbar = () => {
         {/* Language Selection*/}
         <button
           className={`${
-            languagePopupIsOpen && 'bg-primary-200 shadow-lg'
-          } relative mr-4 flex items-center gap-2 rounded-lg px-4 py-2 transition hover:bg-primary-200 hover:shadow-lg`}
+            languagePopupIsOpen &&
+            'bg-primary-200 shadow-lg dark:bg-blue-500 dark:text-white'
+          } relative mr-4 flex items-center gap-2 rounded-lg px-4 py-2 text-typo-600 transition hover:bg-primary-200 hover:shadow-lg dark:text-typo_dark-600 dark:hover:bg-blue-500 dark:hover:text-white dark:hover:shadow-none`}
           onClick={() => setLanguagePopupIsOpen(true)}
         >
-          <p className="text-xs text-typo-600">{languageButtonText}</p>
+          <p className="text-xs">{languageButtonText}</p>
           <ExpandMoreIconComponent />
           {languagePopupIsOpen && (
             <PopupMenu
@@ -146,7 +161,10 @@ const Navbar = () => {
         <IconButton
           className="mr-4"
           icon={
-            <QuestionMark className="text-typo-700" sx={{ height: '1.3rem' }} />
+            <QuestionMark
+              className="text-typo-700 dark:text-white"
+              sx={{ height: '1.3rem' }}
+            />
           }
         />
         <IconButton
@@ -154,7 +172,7 @@ const Navbar = () => {
           icon={
             mode === ThemeMode.Dark ? (
               <DarkModeOutlinedIcon
-                className="text-typo-700"
+                className="text-white"
                 sx={{ height: '1.3rem' }}
               />
             ) : (
@@ -168,11 +186,11 @@ const Navbar = () => {
         />
 
         {/* Profile Button */}
-        <button className="-ml-4 mr-4 flex items-center rounded-lg px-4 py-2 transition hover:bg-primary-200 hover:shadow-lg">
-          <img
-            src={profileImage}
-            alt="profile picture"
-            className="mr-2 h-10 w-10 rounded-full"
+        <button className="-ml-4 mr-4 flex items-center rounded-lg px-4 py-2 transition hover:bg-primary-200 hover:shadow-lg dark:text-typo_dark-600 dark:hover:bg-blue-500 dark:hover:text-white dark:hover:shadow-none">
+          <RoundIcon
+            icon={<img src={profileImage} alt="profile picture" />}
+            iconStyle="bg-typo-500 mr-4 dark:bg-white"
+            isInNavbar={true}
           />
           <p className="text-sm font-medium">Alex Smith</p>
           <ExpandMoreIconComponent />
