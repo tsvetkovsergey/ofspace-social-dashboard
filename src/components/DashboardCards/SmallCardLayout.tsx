@@ -20,11 +20,11 @@ const SmallCardLayout = ({ className, data }: Props) => {
         <i className="rounded-full bg-black bg-opacity-10 p-2 text-white">
           {data.icon}
         </i>
-        <div className="ml-2 flex-1 text-xs font-extralight text-white">
+        <div className="ml-2 flex-1 text-xs font-extralight text-white dark:text-inherit">
           <p>{data.title}</p>
           <div className="mt-2 flex items-center justify-between">
             <h3 className="text-base font-semibold">{data.count} k</h3>
-            <p className="text-sm text-white text-opacity-70">{`${
+            <p className="text-sm text-white text-opacity-70 dark:text-slate-100 dark:text-opacity-70">{`${
               data.percent > 0 ? '+' : ''
             }${data.percent}%`}</p>
           </div>

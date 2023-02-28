@@ -7,7 +7,7 @@ import PopupItem from '../../Types/PopupItem';
 import { PagesActivity as PagesActivityType } from '../../Types/Settings';
 import CardHeader from '../CardHeader';
 import Select from '../Select';
-import PagesActivityChart from './PagesActivityChart';
+import PagesActivityChart from './Charts/PagesActivityChart';
 import { pagesActivityChartData } from '../../data/data';
 
 interface PagesActivityPopup extends PopupItem {
@@ -44,11 +44,11 @@ const PagesActivity = () => {
           />
         }
       </CardHeader>
-      <div className="flex gap-6 text-sm text-typo-600">
-        <p className="flex items-center before:mr-2 before:h-3 before:w-3 before:rounded-full before:bg-primary-700">
+      <div className="flex gap-6 text-sm text-typo-600 dark:text-inherit">
+        <p className="flex items-center before:mr-2 before:h-3 before:w-3 before:rounded-full before:bg-primary-700 dark:before:bg-fuchsia-700">
           Viewers
         </p>
-        <p className="flex items-center before:mr-2 before:h-3 before:w-3 before:rounded-full before:bg-secondary-500">
+        <p className="flex items-center before:mr-2 before:h-3 before:w-3 before:rounded-full before:bg-secondary-500 dark:before:bg-fuchsia-200">
           Followers
         </p>
       </div>

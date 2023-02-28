@@ -5,7 +5,7 @@ type Props = {
 };
 
 const CardHeading = ({ title }: Props) => {
-  return <h2 className="font-semibold dark:text-slate-100">{title}</h2>;
+  return <h2 className="font-semibold">{title}</h2>;
 };
 
 export default CardHeading;

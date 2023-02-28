@@ -11,7 +11,7 @@ type Props = {
 const StatCard = ({ icon, title, text, cardStyle, iconStyle }: Props) => {
   return (
     <div
-      className={`flex items-center gap-2 rounded-xl bg-white p-4 shadow-lg ${cardStyle}`}
+      className={`flex items-center gap-2 rounded-xl p-4 shadow-lg ${cardStyle}`}
     >
       <RoundIcon icon={icon} iconStyle={iconStyle} />
       <div>

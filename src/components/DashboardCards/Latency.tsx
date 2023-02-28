@@ -4,7 +4,7 @@ import PopupItem from '../../Types/PopupItem';
 import { Latency as LatencyType } from '../../Types/Settings';
 import CardHeader from '../CardHeader';
 import Select from '../Select';
-import LatencyChart from './LatencyChart';
+import LatencyChart from './Charts/LatencyChart';
 import { latencyChartData } from '../../data/data';
 
 interface PagesActivityPopup extends PopupItem {

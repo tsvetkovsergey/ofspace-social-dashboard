@@ -40,7 +40,7 @@ const highViewTableGenerateMetric = ({
   styles?: string;
 }) => (
   <div
-    className={`[&>svg]:mr-2 [&>svg]:h-[1.7rem] [&>svg]:w-[1.7rem]  [&>svg]:rounded-full  [&>svg]:p-[0.3rem] ${styles}`}
+    className={`[&>svg]:mr-2 [&>svg]:h-[1.7rem] [&>svg]:w-[1.7rem] [&>svg]:rounded-full [&>svg]:p-[0.3rem] ${styles}`}
   >
     {icon}
     <span>{text}</span>
@@ -56,7 +56,8 @@ export const highViewTableData = {
       metric: highViewTableGenerateMetric({
         icon: <DiamondOutlinedIcon />,
         text: 'diamond.rack.req',
-        styles: '[&>svg]:bg-primary-300 [&>svg]:text-primary-710',
+        styles:
+          '[&>svg]:bg-primary-300 [&>svg]:text-primary-710 dark:[&>svg]:bg-teal-100 dark:[&>svg]:text-teal-600',
       }),
       tag: 'diamond',
     },
@@ -67,7 +68,8 @@ export const highViewTableData = {
       metric: highViewTableGenerateMetric({
         icon: <RestoreIcon />,
         text: 'trace.rack.req',
-        styles: '[&>svg]:bg-additional-110 [&>svg]:text-additional-100',
+        styles:
+          '[&>svg]:bg-additional-110 [&>svg]:text-additional-100 dark:[&>svg]:bg-violet-100 dark:[&>svg]:text-violet-600',
       }),
       tag: 'trace',
     },
@@ -78,7 +80,8 @@ export const highViewTableData = {
       metric: highViewTableGenerateMetric({
         icon: <ExploreOutlinedIcon />,
         text: 'explore.rack.req',
-        styles: '[&>svg]:bg-secondary-200 [&>svg]:text-secondary-500',
+        styles:
+          '[&>svg]:bg-secondary-200 [&>svg]:text-secondary-500 dark:[&>svg]:bg-fuchsia-100 dark:[&>svg]:text-fuchsia-600',
       }),
       tag: 'explore',
     },
@@ -136,6 +139,7 @@ export const locationResponseChartData = {
     {
       id: 'response',
       color: '#1d33cc',
+      color_dark: '#be185d',
       data: [
         { x: 'Mon', y: 25 },
         { x: 'Tue', y: 22 },
@@ -151,19 +155,20 @@ export const locationResponseChartData = {
     {
       id: 'response',
       color: '#1d33cc',
+      color_dark: '#be185d',
       data: [
-        { x: 'Jan', y: 2600 },
-        { x: 'Feb', y: 2300 },
-        { x: 'Mar', y: 2500 },
-        { x: 'Apr', y: 2200 },
-        { x: 'May', y: 3600 },
-        { x: 'June', y: 3200 },
-        { x: 'July', y: 3500 },
-        { x: 'Aug', y: 3800 },
-        { x: 'Sep', y: 3800 },
-        { x: 'Oct', y: 3900 },
-        { x: 'Nov', y: 3600 },
-        { x: 'Dec', y: 2900 },
+        { x: 'Jan', y: 2100 },
+        { x: 'Feb', y: 1800 },
+        { x: 'Mar', y: 2000 },
+        { x: 'Apr', y: 1700 },
+        { x: 'May', y: 3100 },
+        { x: 'June', y: 2700 },
+        { x: 'July', y: 3000 },
+        { x: 'Aug', y: 3300 },
+        { x: 'Sep', y: 3300 },
+        { x: 'Oct', y: 3400 },
+        { x: 'Nov', y: 3100 },
+        { x: 'Dec', y: 2400 },
       ],
     },
   ],
@@ -274,6 +279,7 @@ export const latencyChartData = {
     {
       id: 'solve',
       color: '#3247cf',
+      color_dark: '#d8b4fe',
       data: [
         { x: 'Mon', y: 22 },
         { x: 'Tue', y: 31 },
@@ -287,6 +293,7 @@ export const latencyChartData = {
     {
       id: 'pending',
       color: '#00d0ff',
+      color_dark: '#a855f7',
       data: [
         { x: 'Mon', y: 25 },
         { x: 'Tue', y: 18 },
@@ -302,27 +309,29 @@ export const latencyChartData = {
     {
       id: 'solve',
       color: '#3247cf',
+      color_dark: '#d8b4fe',
       data: [
-        { x: '46', y: 330 },
-        { x: '47', y: 290 },
-        { x: '48', y: 290 },
-        { x: '49', y: 250 },
-        { x: '50', y: 310 },
-        { x: '51', y: 280 },
-        { x: '52', y: 300 },
+        { x: '46', y: 280 },
+        { x: '47', y: 240 },
+        { x: '48', y: 240 },
+        { x: '49', y: 200 },
+        { x: '50', y: 260 },
+        { x: '51', y: 230 },
+        { x: '52', y: 250 },
       ],
     },
     {
       id: 'pending',
       color: '#00d0ff',
+      color_dark: '#a855f7',
       data: [
-        { x: '46', y: 220 },
-        { x: '47', y: 360 },
-        { x: '48', y: 310 },
-        { x: '49', y: 210 },
-        { x: '50', y: 250 },
-        { x: '51', y: 240 },
-        { x: '52', y: 190 },
+        { x: '46', y: 170 },
+        { x: '47', y: 310 },
+        { x: '48', y: 260 },
+        { x: '49', y: 160 },
+        { x: '50', y: 200 },
+        { x: '51', y: 190 },
+        { x: '52', y: 140 },
       ],
     },
   ],

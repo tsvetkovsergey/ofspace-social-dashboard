@@ -9,17 +9,15 @@ function App() {
   const mode = useAppSelector(selectMode);
 
   return (
-    <div
-      className={`${
-        mode === ThemeMode.Dark ? 'dark' : ''
-      } flex h-screen w-screen flex-col`}
-    >
-      <Navbar />
-      <div className="flex flex-1 overflow-hidden">
-        <Sidebar />
-        <main className="flex-1 overflow-scroll bg-primary-50 p-8 dark:bg-primary_dark-700">
-          <Outlet />
-        </main>
+    <div className={`${mode === ThemeMode.Dark ? 'dark' : ''} `}>
+      <div className="flex h-screen w-screen flex-col dark:text-slate-100">
+        <Navbar />
+        <div className="flex flex-1 overflow-hidden ">
+          <Sidebar />
+          <main className="flex-1 overflow-scroll bg-primary-50 p-8 dark:bg-primary_dark-700">
+            <Outlet />
+          </main>
+        </div>
       </div>
     </div>
   );

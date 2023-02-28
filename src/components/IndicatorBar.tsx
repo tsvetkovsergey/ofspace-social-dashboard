@@ -4,6 +4,7 @@ type Props = {
   text: string;
   progress: number;
   icon: JSX.Element;
+  isDarkMode: boolean;
   mainColor?: string;
   textColor?: string;
 };
@@ -12,6 +13,7 @@ const IndicatorBar = ({
   text,
   progress,
   icon,
+  isDarkMode,
   mainColor = 'bg-primary-710',
   textColor = 'text-primary-710',
 }: Props) => {
@@ -33,7 +35,9 @@ const IndicatorBar = ({
 
   return (
     <div
-      className={`group relative flex h-[3.25rem] w-full items-center gap-3 overflow-hidden rounded-xl border border-primary-100 px-3 transition ${mainColor} bg-opacity-0 hover:bg-opacity-10`}
+      className={`group relative flex h-[3.25rem] w-full items-center gap-3 overflow-hidden rounded-xl border border-primary-100 bg-opacity-0 px-3 transition hover:bg-opacity-10 dark:border-transparent dark:hover:border-slate-500 ${
+        isDarkMode ? 'dark:bg-slate-800' : mainColor
+      }`}
     >
       <div className={`absolute left-0 top-0 h-full w-1 ${mainColor}`} />
       <i
@@ -41,7 +45,7 @@ const IndicatorBar = ({
       >
         {icon}
       </i>
-      <p className="flex-[0_0_10rem] text-sm text-typo-600 group-hover:text-black group-hover:text-opacity-70">
+      <p className="flex-[0_0_10rem] text-sm text-typo-600 group-hover:text-black group-hover:text-opacity-70 dark:text-slate-300 dark:group-hover:text-slate-300 dark:group-hover:text-opacity-100">
         {text}
       </p>
       <div className="relative h-3 flex-1">

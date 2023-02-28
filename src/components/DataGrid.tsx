@@ -31,7 +31,7 @@ const DataGrid = ({ columns, data, gridStyle }: Props) => {
   return (
     <table className={`grid ${gridStyle}`}>
       {/* HEADINGS */}
-      <thead className="contents text-sm text-typo-300">
+      <thead className="contents text-sm text-typo-300 dark:text-inherit">
         <tr className="contents">
           {columns.map((col, index) => (
             <th className="pt-2 pb-5 text-left font-medium" key={index}>
@@ -42,10 +42,10 @@ const DataGrid = ({ columns, data, gridStyle }: Props) => {
       </thead>
 
       {/* DATA */}
-      <tbody className="contents text-sm font-light text-typo-600">
+      <tbody className="contents text-sm font-light text-typo-600 dark:text-slate-300">
         {rows.map((row, index) => (
           <tr
-            className="group contents [&>td]:border-b-[1px] [&>td]:border-primary-200"
+            className="group contents [&>td]:border-b-[1px] [&>td]:border-primary-200 dark:[&>td]:border-slate-500"
             key={index}
           >
             {row}

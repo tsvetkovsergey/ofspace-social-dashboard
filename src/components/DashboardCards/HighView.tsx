@@ -36,7 +36,7 @@ const menuItems: PagesActivityPopup[] = [
 ];
 
 const cardStyle =
-  'p-2 [&_h3]:text-white [&_h3]:font-bold [&_h3]:text-lg [&_p]:text-white [&_p]:text-opacity-80';
+  'p-2 [&_h3]:text-white [&_h3]:font-bold [&_h3]:text-lg [&_p]:text-white dark:[&_h3]:text-inherit [&_p]:text-opacity-80 hover:opacity-80 dark:border dark:border-transparent dark:hover:border-slate-100 dark:hover:opacity-100 transition';
 const iconStyle = { width: '1.5rem', height: '1.5rem', m: '0.5rem' };
 const iconContainerStyle = 'bg-white h-10 w-10';
 const getCardData = (chartType: HighViewType) => [
@@ -45,16 +45,16 @@ const getCardData = (chartType: HighViewType) => [
     icon: <VisibilityOutlinedIcon sx={iconStyle} />,
     title: `${highViewCardsData[chartType].totalView} k`,
     text: 'Total view',
-    cardStyle: `bg-primary-700 hover:opacity-80 transition ${cardStyle}`,
-    iconStyle: `text-primary-700 ${iconContainerStyle}`,
+    cardStyle: `bg-primary-700 dark:bg-teal-600 ${cardStyle}`,
+    iconStyle: `text-primary-700 dark:bg-blue-50 dark:text-teal-600 ${iconContainerStyle}`,
   },
   {
     id: 'c2',
     icon: <ThumbUpOutlinedIcon sx={iconStyle} />,
     title: `${highViewCardsData[chartType].totalLike} k`,
     text: 'Total like',
-    cardStyle: `bg-secondary-600 hover:opacity-80 transition ${cardStyle}`,
-    iconStyle: `text-secondary-600 ${iconContainerStyle}`,
+    cardStyle: `bg-secondary-600 dark:bg-slate-600 ${cardStyle}`,
+    iconStyle: `text-secondary-600 dark:bg-blue-50 dark:text-slate-600 ${iconContainerStyle}`,
   },
 ];
 

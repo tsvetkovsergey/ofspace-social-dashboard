@@ -7,10 +7,10 @@ import {
 import PopupItem from '../../Types/PopupItem';
 import { ResponseTime } from '../../Types/Settings';
 import CardHeader from '../CardHeader';
-import CardMenu from '../CardMenu';
 
-import LocationResponseChart from './LocationResponseChart';
+import LocationResponseChart from './Charts/LocationResponseChart';
 import { locationResponseChartData } from '../../data/data';
+import Select from '../Select';
 
 type Props = {};
 interface ResponsePopup extends PopupItem {
@@ -41,7 +41,14 @@ const LocationResponse = (props: Props) => {
   return (
     <div>
       <CardHeader title="Response time by location">
-        {<CardMenu items={menuItems} onChange={onChangeHandler} />}
+        {/* {<CardMenu items={menuItems} onChange={onChangeHandler} />} */}
+        {
+          <Select
+            activeItemID={responseTimeChart}
+            options={menuItems}
+            onChange={onChangeHandler}
+          />
+        }
       </CardHeader>
       <div className="h-44 w-full">
         <LocationResponseChart

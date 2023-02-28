@@ -1,9 +1,16 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
-import GardenerImage from '../../assets/clock_gardener.png';
-import ClockFaceImage from '../../assets/clock_face.png';
-import HoursHandImage from '../../assets/hour_hand.png';
-import MinutesHandImage from '../../assets/minute_hand.png';
+import GardenerImage from '../../assets/gardener.webp';
+import GardenerImageDarkMode from '../../assets/gardener_darkmode.webp';
+import ClockFaceImage from '../../assets/clock.webp';
+import ClockFaceImageDarkMode from '../../assets/clock_darkmode.webp';
+import HoursHandImage from '../../assets/hour_hand.webp';
+import HoursHandImageDarkMode from '../../assets/hour_hand_darkmode.webp';
+import MinutesHandImage from '../../assets/minute_hand.webp';
+import MinutesHandImageDarkMode from '../../assets/minute_hand_darkmode.webp';
+import { useAppSelector } from '../../store/hooks';
+import { selectMode } from '../../store/themeSlice';
+import { ThemeMode } from '../../Types/Theme';
 
 type Props = {};
 
@@ -30,6 +37,7 @@ const getCurrentTimeDegrees = (): { minutesDeg: number; hoursDeg: number } => {
 };
 
 const Clock = (props: Props) => {
+  const mode = useAppSelector(selectMode);
   // const [hoursDegree, setHoursDegree] = useState<number>(0);
   // const [minutesDegree, setMinutesDegree] = useState<number>(0);
   const hourHandRef = useRef<HTMLImageElement>(null);
@@ -54,17 +62,33 @@ const Clock = (props: Props) => {
 
   return (
     <div className="relative -mx-10 h-full">
-      <img src={GardenerImage} alt="gardener" className="absolute -bottom-5" />
+      <img
+        src={mode === ThemeMode.Dark ? GardenerImageDarkMode : GardenerImage}
+        alt="gardener"
+        className="absolute -bottom-5"
+      />
       <div className="absolute right-8 -top-5 h-[5.3rem] w-40">
-        <img src={ClockFaceImage} alt="clock face" className="absolute" />
         <img
-          src={HoursHandImage}
+          src={
+            mode === ThemeMode.Dark ? ClockFaceImageDarkMode : ClockFaceImage
+          }
+          alt="clock face"
+          className="absolute"
+        />
+        <img
+          src={
+            mode === ThemeMode.Dark ? HoursHandImageDarkMode : HoursHandImage
+          }
           alt="hours hand"
           ref={hourHandRef}
           className={`absolute right-1/2 bottom-0 mr-[0.15rem] mb-[0.08rem] h-12 origin-bottom`}
         />
         <img
-          src={MinutesHandImage}
+          src={
+            mode === ThemeMode.Dark
+              ? MinutesHandImageDarkMode
+              : MinutesHandImage
+          }
           alt="minutes hand"
           ref={minuteHandRef}
           className={`absolute right-1/2 bottom-0 mr-[0.15rem] mb-[0.08rem] h-14 origin-bottom translate-x-1/2`}

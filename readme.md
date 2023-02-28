@@ -7,6 +7,7 @@ React Router
 Tailwind
 Material Icons
 React SVG
+Lodash Merge
 
 # Dev dependencies
 

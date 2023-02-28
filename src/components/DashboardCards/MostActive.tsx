@@ -31,7 +31,7 @@ const MostActive = () => {
             icon={user.icon}
             title={user.name}
             text={user.email}
-            cardStyle="hover:bg-slate-50 border border-transparent transition hover:border-slate-100"
+            cardStyle="hover:bg-slate-50 border bg-white dark:bg-blue-500 dark:[&_p]:text-slate-200 border-transparent transition hover:border-slate-100"
             iconStyle={user.iconStyle}
           />
         ))}
