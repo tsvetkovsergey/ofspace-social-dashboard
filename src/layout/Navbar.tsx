@@ -184,7 +184,7 @@ const Navbar = () => {
 
         {/* Icon Buttons */}
         <IconButton
-          className="mr-4"
+          className="mx-4"
           icon={
             <QuestionMark
               className="text-typo-700 dark:text-slate-50"

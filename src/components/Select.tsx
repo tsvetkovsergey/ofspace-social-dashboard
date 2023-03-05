@@ -78,7 +78,7 @@ const Select = ({
     isOpen
       ? 'bg-primary-200 shadow-lg dark:bg-blue-500 dark:text-slate-50 dark:[&_svg]:text-slate-50'
       : 'hover:bg-primary-200 hover:shadow-lg dark:text-slate-400 dark:hover:bg-blue-500 dark:hover:text-slate-50 dark:[&_svg]:text-slate-400 dark:[&:hover_svg]:text-slate-50'
-  } relative w-28 flex justify-between mr-4 items-center rounded-lg px-4 py-2 text-typo-600 transition dark:hover:shadow-none dark:[&_svg]:transition`;
+  } relative w-28 flex justify-between items-center rounded-lg px-4 py-2 text-typo-600 transition dark:hover:shadow-none dark:[&_svg]:transition`;
 
   const standartButtonStyles = `${
     isOpen
@@ -87,28 +87,30 @@ const Select = ({
   } relative flex h-8 items-center rounded-lg bg-primary-100 px-2 transition dark:hover:shadow-none`;
 
   return (
-    <motion.button
-      className={isNavbar ? navbarButtonStyles : standartButtonStyles}
-      onClick={() => setIsOpen(true)}
-      {...scaleOnTap}
-    >
-      <p
-        className={`text-xs ${
-          isNavbar ? '' : 'text-typo-500 dark:text-slate-400'
-        }`}
+    <div className="relative">
+      <motion.button
+        className={isNavbar ? navbarButtonStyles : standartButtonStyles}
+        onClick={() => setIsOpen(true)}
+        {...scaleOnTap}
       >
-        {buttonText}
-      </p>
-      <ExpandMoreIcon
-        className={`text-typo-300 ${isNavbar ? '' : 'dark:text-slate-400'}`}
-        sx={
-          isNavbar
-            ? { height: '1.4rem', width: '1.4rem' }
-            : { height: '1.2rem', width: '1.2rem' }
-        }
-      />
+        <p
+          className={`text-xs ${
+            isNavbar ? '' : 'text-typo-500 dark:text-slate-400'
+          }`}
+        >
+          {buttonText}
+        </p>
+        <ExpandMoreIcon
+          className={`text-typo-300 ${isNavbar ? '' : 'dark:text-slate-400'}`}
+          sx={
+            isNavbar
+              ? { height: '1.4rem', width: '1.4rem' }
+              : { height: '1.2rem', width: '1.2rem' }
+          }
+        />
+      </motion.button>
       <AnimatePresence>{isOpen && popupMenu}</AnimatePresence>
-    </motion.button>
+    </div>
   );
 };
 
