@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PopupItem from '../Types/PopupItem';
 import MenuItem from './MenuItem';
@@ -19,7 +19,7 @@ const Select = ({
   isNavbar = false,
 }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [firstClick, setFirstClick] = useState(true);
+  const selectRef = useRef<HTMLDivElement | null>(null);
 
   const buttonText = options.find((opt) => opt.id === activeItemID)?.title;
 
@@ -31,27 +31,31 @@ const Select = ({
     ) {
       const el = event.target as HTMLLIElement;
       onChange(el.dataset.id as string);
+      // Close popup menu
+      setIsOpen(false);
     }
-    // Close popup menu
-    setIsOpen(false);
   };
 
   // Listen for clicks outside popup menu to close the menu
   useEffect(() => {
     const clickHandler = (ev: MouseEvent) => {
-      if (firstClick) {
-        setFirstClick(false);
-        return;
+      // Close popup menu only if you clicked
+      // outside select button and menu
+      if (
+        ev.target !== null &&
+        selectRef.current !== null &&
+        ev.target instanceof Node &&
+        !selectRef.current.contains(ev.target)
+      ) {
+        setIsOpen(false);
       }
-      setFirstClick(true);
-      setIsOpen(false);
     };
 
     isOpen && document.addEventListener('click', clickHandler);
     !isOpen && document.removeEventListener('click', clickHandler);
 
     return () => document.removeEventListener('click', clickHandler);
-  }, [isOpen, firstClick]);
+  }, [isOpen]);
 
   const popupMenu = (
     <motion.ul
@@ -87,10 +91,10 @@ const Select = ({
   } relative flex h-8 items-center rounded-lg bg-primary-100 px-2 transition dark:hover:shadow-none`;
 
   return (
-    <div className="relative">
+    <div ref={selectRef} className="relative">
       <motion.button
         className={isNavbar ? navbarButtonStyles : standartButtonStyles}
-        onClick={() => setIsOpen(true)}
+        onClick={() => setIsOpen((currentState) => !currentState)}
         {...scaleOnTap}
       >
         <p
