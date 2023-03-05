@@ -18,9 +18,13 @@
     "@nivo/line": "^0.80.0",
     "@reduxjs/toolkit": "^1.9.1",
     "@types/lodash": "^4.14.191",
+    "framer-motion": "^10.0.2",
+    "i18next": "^22.4.10",
+    "i18next-browser-languagedetector": "^7.0.1",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^12.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.7.0",
     "react-svg": "^16.1.2"

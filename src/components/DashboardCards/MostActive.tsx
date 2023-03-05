@@ -2,6 +2,7 @@ import CardHeader from '../CardHeader';
 import UserImage_1 from '../../assets/active_user_1.png';
 import UserImage_2 from '../../assets/active_user_2.png';
 import StatCard from '../StatCard';
+import { useTranslation } from 'react-i18next';
 
 const mostActiveUsers = [
   {
@@ -21,9 +22,11 @@ const mostActiveUsers = [
 ];
 
 const MostActive = () => {
+  const { t } = useTranslation();
+
   return (
     <div>
-      <CardHeader title="Most active user" />
+      <CardHeader title={t('Most active user')} />
       <div className="mt-4 flex flex-col gap-5">
         {mostActiveUsers.map((user) => (
           <StatCard

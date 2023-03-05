@@ -8,6 +8,8 @@ Tailwind
 Material Icons
 React SVG
 Lodash Merge
+i18next
+Framer Motion
 
 # Dev dependencies
 

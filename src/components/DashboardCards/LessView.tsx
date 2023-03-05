@@ -8,16 +8,18 @@ import StorefrontIcon from '@mui/icons-material/Storefront';
 import { useAppSelector } from '../../store/hooks';
 import { selectMode } from '../../store/themeSlice';
 import { ThemeMode } from '../../Types/Theme';
+import { useTranslation } from 'react-i18next';
 
 type Props = {};
 
 const LessView = (props: Props) => {
   const isDarkMode = useAppSelector(selectMode) === ThemeMode.Dark;
+  const { t } = useTranslation();
 
   return (
     <div>
-      <CardHeader title="Less view design">
-        <TextButton title="View all" />
+      <CardHeader title={t('Less view design')}>
+        <TextButton title={t('View all')} />
       </CardHeader>
       <div className="mt-5 flex flex-col gap-3">
         <IndicatorBar

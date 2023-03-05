@@ -6,25 +6,28 @@ import CardHeader from '../CardHeader';
 import Select from '../Select';
 import LatencyChart from './Charts/LatencyChart';
 import { latencyChartData } from '../../data/data';
+import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 
 interface PagesActivityPopup extends PopupItem {
   id: LatencyType;
 }
 
-const menuItems: PagesActivityPopup[] = [
+const getMenuItems = (t: TFunction): PagesActivityPopup[] => [
   {
     id: LatencyType.Weekly,
-    title: 'Weekly',
+    title: t('Weekly'),
   },
   {
     id: LatencyType.Daily,
-    title: 'Daily',
+    title: t('Daily'),
   },
 ];
 
 const Latency = () => {
   const dispatch = useDispatch();
   const latencyChart = useSelector(selectLatencyChart);
+  const { t } = useTranslation();
 
   const onChangeHandler = (itemId: string) => {
     dispatch(setLatencyChart(itemId as LatencyType));
@@ -32,12 +35,12 @@ const Latency = () => {
 
   return (
     <div>
-      <CardHeader title="Latency contribution">
+      <CardHeader title={t('Latency contribution')}>
         {
           <Select
             activeItemID={latencyChart}
             onChange={onChangeHandler}
-            options={menuItems}
+            options={getMenuItems(t)}
           />
         }
       </CardHeader>

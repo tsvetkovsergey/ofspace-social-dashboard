@@ -17,7 +17,7 @@ interface InitialStateTypes {
 }
 
 const initialState: InitialStateTypes = {
-  language: Language.English,
+  language: Language.Russian,
   responseTimeChart: ResponseTime.Monthly,
   pagesActivityChart: PagesActivity.Monthly,
   latencyChart: Latency.Weekly,

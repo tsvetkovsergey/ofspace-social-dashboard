@@ -9,25 +9,28 @@ import CardHeader from '../CardHeader';
 import Select from '../Select';
 import PagesActivityChart from './Charts/PagesActivityChart';
 import { pagesActivityChartData } from '../../data/data';
+import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 
 interface PagesActivityPopup extends PopupItem {
   id: PagesActivityType;
 }
 
-const menuItems: PagesActivityPopup[] = [
+const getMenuItems = (t: TFunction): PagesActivityPopup[] => [
   {
     id: PagesActivityType.Monthly,
-    title: 'Monthly',
+    title: t('Monthly'),
   },
   {
     id: PagesActivityType.Daily,
-    title: 'Daily',
+    title: t('Daily'),
   },
 ];
 
 const PagesActivity = () => {
   const dispatch = useDispatch();
   const pagesActivityChart = useSelector(selectPagesActivityChart);
+  const { t } = useTranslation();
 
   const onChangeHandler = (itemId: string) => {
     dispatch(setPagesActivityChart(itemId as PagesActivityType));
@@ -35,21 +38,21 @@ const PagesActivity = () => {
 
   return (
     <div>
-      <CardHeader title="Activity on the pages">
+      <CardHeader title={t('Activity on the pages')}>
         {
           <Select
             activeItemID={pagesActivityChart}
             onChange={onChangeHandler}
-            options={menuItems}
+            options={getMenuItems(t)}
           />
         }
       </CardHeader>
       <div className="flex gap-6 text-sm text-typo-600 dark:text-inherit">
         <p className="flex items-center before:mr-2 before:h-3 before:w-3 before:rounded-full before:bg-primary-700 dark:before:bg-fuchsia-700">
-          Viewers
+          {t('Viewers')}
         </p>
         <p className="flex items-center before:mr-2 before:h-3 before:w-3 before:rounded-full before:bg-secondary-500 dark:before:bg-fuchsia-200">
-          Followers
+          {t('Followers')}
         </p>
       </div>
       <div id="pagesActivityChartContainer" className="h-40 w-full">

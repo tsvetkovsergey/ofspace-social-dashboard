@@ -6,6 +6,8 @@ import store from './store/store';
 import App from './App';
 import './index.css';
 
+import './i18n';
+
 // Pages
 import Dashboard from './pages/Dashboard';
 import Schedule from './pages/Schedule';

@@ -1,3 +1,5 @@
+import ButtonWithTooltip from '../components/Experiment/ButtonWithTooltip';
+
 type Props = {};
 
 const Schedule = (props: Props) => {

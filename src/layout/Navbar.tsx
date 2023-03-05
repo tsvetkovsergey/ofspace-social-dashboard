@@ -21,6 +21,7 @@ import { selectLanguage, setLanguage } from '../store/settingsSlice';
 import RoundIcon from '../components/RoundIcon';
 import Select from '../components/Select';
 import PopupItem from '../Types/PopupItem';
+import { useTranslation } from 'react-i18next';
 
 interface LanguagePopup extends PopupItem {
   id: Language;
@@ -35,8 +36,9 @@ const ExpandMoreIconComponent = (): JSX.Element => (
 
 const Navbar = () => {
   const [searchInputText, setSearchInputText] = useState<string>('');
-  const [languagePopupIsOpen, setLanguagePopupIsOpen] =
-    useState<boolean>(false);
+  const { t } = useTranslation();
+  // const [languagePopupIsOpen, setLanguagePopupIsOpen] =
+  //   useState<boolean>(false);
 
   const dispatch = useDispatch();
   const mode = useSelector(selectMode);
@@ -72,9 +74,9 @@ const Navbar = () => {
     },
   ];
 
-  const languageButtonText = languageItems.find(
-    (item) => item.id === language
-  )?.title;
+  // const languageButtonText = languageItems.find(
+  //   (item) => item.id === language
+  // )?.title;
 
   return (
     <div className="relative top-0 left-0 z-20 flex h-24 flex-[0_0_6rem] items-center justify-between bg-white shadow-lg dark:bg-slate-900 dark:shadow-none">
@@ -96,14 +98,14 @@ const Navbar = () => {
         {/* Heading */}
         <div className="mx-8">
           <h1 className="text-lg font-bold text-typo-800 dark:text-blue-500">
-            Welcome to Dashboard
+            {t('Welcome to Dashboard')}
           </h1>
           <button className="-ml-2 flex items-center rounded-lg py-1 px-2 text-typo-600 transition hover:bg-primary-200 hover:shadow-lg dark:text-slate-400 dark:hover:bg-blue-500 dark:hover:text-white dark:hover:shadow-none">
             <p className="text-sm">{`${date.getDate()} ${date.toLocaleDateString(
               'en',
               { month: 'long' }
             )} ${date.getFullYear()}`}</p>
-            <ExpandMoreIconComponent />
+            {/* <ExpandMoreIconComponent /> */}
           </button>
         </div>
       </div>
@@ -120,7 +122,7 @@ const Navbar = () => {
             name="search"
             value={searchInputText}
             onChange={(e) => setSearchInputText(e.target.value)}
-            placeholder="Search"
+            placeholder={t('Search') as string}
           />
           <button disabled={!searchInputText}>
             {searchInputText && (
@@ -152,8 +154,8 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Language Selection*/}
-        <button
+        {/* Language Selection - Old Version */}
+        {/* <button
           className={`${
             languagePopupIsOpen
               ? 'bg-primary-200 shadow-lg dark:bg-blue-500 dark:text-slate-50 dark:[&_svg]:text-slate-50'
@@ -170,7 +172,7 @@ const Navbar = () => {
               onChange={(itemId) => dispatch(setLanguage(itemId as Language))}
             />
           )}
-        </button>
+        </button> */}
 
         {/* Select Language Button */}
         <Select

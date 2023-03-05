@@ -5,28 +5,72 @@ import {
   ResponseTime,
   Latency as LatencyType,
 } from '../Types/Settings';
+import { TFunction } from 'i18next';
 
 // ICONS
 import DiamondOutlinedIcon from '@mui/icons-material/DiamondOutlined';
 import RestoreIcon from '@mui/icons-material/Restore';
 import ExploreOutlinedIcon from '@mui/icons-material/ExploreOutlined';
+import HistoryIcon from '@mui/icons-material/History';
+import CallMergeIcon from '@mui/icons-material/CallMerge';
+import ModeStandbyIcon from '@mui/icons-material/ModeStandby';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
-export const highViewTableColumns: DataGridColumn[] = [
+interface SmallCard {
+  title: string;
+  count: number;
+  percent: number;
+  bgStyle: string;
+  icon: JSX.Element;
+}
+
+export const getSmallCardsData = (t: TFunction): SmallCard[] => [
+  {
+    title: t('Accounts reached'),
+    count: 48,
+    percent: 2.5,
+    bgStyle: 'bg-account-reached',
+    icon: <HistoryIcon />,
+  },
+  {
+    title: t('Accounts engaged'),
+    count: 29,
+    percent: 1.23,
+    bgStyle: 'bg-account-engaged',
+    icon: <CallMergeIcon />,
+  },
+  {
+    title: t('Average reached'),
+    count: 50,
+    percent: 1.23,
+    bgStyle: 'bg-average-reached',
+    icon: <ModeStandbyIcon />,
+  },
+  {
+    title: t('Average engaged'),
+    count: 54,
+    percent: -0.12,
+    bgStyle: 'bg-average-engaged',
+    icon: <ShoppingCartIcon />,
+  },
+];
+
+export const getHighViewTableColumns = (t: TFunction): DataGridColumn[] => [
   {
     id: 'value',
-    title: 'Value',
+    title: t('Value'),
   },
   {
     id: 'sum',
-    title: 'Sum',
+    title: t('Sum'),
   },
   {
     id: 'metric',
-    title: 'Metric',
+    title: t('Metric'),
   },
   {
     id: 'tag',
-    title: 'Tag',
+    title: t('Tag'),
   },
 ];
 
