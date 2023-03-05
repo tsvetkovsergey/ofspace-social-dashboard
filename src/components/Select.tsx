@@ -3,6 +3,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PopupItem from '../Types/PopupItem';
 import MenuItem from './MenuItem';
 import { AnimatePresence, motion } from 'framer-motion';
+import { scaleOnTap } from '../data/animationSettings';
 
 type Props = {
   activeItemID: string;
@@ -77,7 +78,7 @@ const Select = ({
     isOpen
       ? 'bg-primary-200 shadow-lg dark:bg-blue-500 dark:text-slate-50 dark:[&_svg]:text-slate-50'
       : 'hover:bg-primary-200 hover:shadow-lg dark:text-slate-400 dark:hover:bg-blue-500 dark:hover:text-slate-50 dark:[&_svg]:text-slate-400 dark:[&:hover_svg]:text-slate-50'
-  } relative mr-4 flex items-center gap-2 rounded-lg px-4 py-2 text-typo-600 transition dark:hover:shadow-none dark:[&_svg]:transition`;
+  } relative w-28 flex justify-between mr-4 items-center rounded-lg px-4 py-2 text-typo-600 transition dark:hover:shadow-none dark:[&_svg]:transition`;
 
   const standartButtonStyles = `${
     isOpen
@@ -89,8 +90,7 @@ const Select = ({
     <motion.button
       className={isNavbar ? navbarButtonStyles : standartButtonStyles}
       onClick={() => setIsOpen(true)}
-      whileTap={{ scale: 0.95 }}
-      transition={{ duration: 0.03 }}
+      {...scaleOnTap}
     >
       <p
         className={`text-xs ${

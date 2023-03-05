@@ -40,8 +40,8 @@ const Clock = (props: Props) => {
   const mode = useAppSelector(selectMode);
   // const [hoursDegree, setHoursDegree] = useState<number>(0);
   // const [minutesDegree, setMinutesDegree] = useState<number>(0);
-  const hourHandRef = useRef<HTMLImageElement>(null);
-  const minuteHandRef = useRef<HTMLImageElement>(null);
+  const hourHandRef = useRef<HTMLImageElement | null>(null);
+  const minuteHandRef = useRef<HTMLImageElement | null>(null);
 
   useEffect(() => {
     const setDegrees = () => {
@@ -54,6 +54,7 @@ const Clock = (props: Props) => {
     };
 
     // Check for current time every second
+    setDegrees();
     const timer = setInterval(setDegrees, 1000);
 
     // Clear interval before component unmounts

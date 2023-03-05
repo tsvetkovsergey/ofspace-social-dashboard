@@ -2,7 +2,7 @@ import ButtonWithTooltip from './ButtonWithTooltip';
 
 type Props = {};
 
-const useRefExperiment = (props: Props) => {
+const useLayoutEffectExperiment = (props: Props) => {
   return (
     <div>
       Schedule
@@ -39,4 +39,4 @@ const useRefExperiment = (props: Props) => {
   );
 };
 
-export default useRefExperiment;
+export default useLayoutEffectExperiment;

@@ -1,9 +1,13 @@
-import ButtonWithTooltip from '../components/Experiment/ButtonWithTooltip';
+import UseRefExperiment from '../components/Experiment/useRefExperiment/UseRefExperiment';
 
 type Props = {};
 
 const Schedule = (props: Props) => {
-  return <div>Schedule</div>;
+  return (
+    <div>
+      <UseRefExperiment />
+    </div>
+  );
 };
 
 export default Schedule;
