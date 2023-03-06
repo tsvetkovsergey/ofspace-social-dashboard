@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { DataGridColumn } from '../Types/DataGrid';
 
 type Props = {
@@ -25,17 +26,24 @@ const generateRows = ({ columns, data }: Props) => {
 
 const DataGrid = ({ columns, data, gridStyle }: Props) => {
   const [rows, setRows] = useState<JSX.Element[][]>([]);
+  const { t } = useTranslation();
 
   useEffect(() => setRows(generateRows({ columns, data })), [columns, data]);
 
+  {
+    /* <table className={`grid ${gridStyle}`}> 
+      <table className={`grid ${gridStyle}`} style={{ gridTemplateColumns: gridStyle }}> 
+      <table className="grid"> */
+  }
+
   return (
-    <table className={`grid ${gridStyle}`}>
+    <table style={{ display: 'grid', gridTemplateColumns: gridStyle }}>
       {/* HEADINGS */}
       <thead className="contents text-sm text-typo-300 dark:text-inherit">
         <tr className="contents">
           {columns.map((col, index) => (
             <th className="pt-2 pb-5 text-left font-medium" key={index}>
-              {col.title}
+              {t(col.titleId)}
             </th>
           ))}
         </tr>

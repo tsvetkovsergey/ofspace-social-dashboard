@@ -1,10 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { DataGridColumnID } from '../Types/DataGrid';
 import {
   Language,
   PagesActivity,
   ResponseTime,
   Latency,
   HighView,
+  HighViewDataGrid,
 } from '../Types/Settings';
 import { RootState } from './store';
 
@@ -14,6 +16,7 @@ interface InitialStateTypes {
   pagesActivityChart: PagesActivity;
   latencyChart: Latency;
   highViewChart: HighView;
+  highViewGrid: HighViewDataGrid;
 }
 
 const initialState: InitialStateTypes = {
@@ -22,6 +25,12 @@ const initialState: InitialStateTypes = {
   pagesActivityChart: PagesActivity.Monthly,
   latencyChart: Latency.Weekly,
   highViewChart: HighView.Weekly,
+  highViewGrid: {
+    [DataGridColumnID.Value]: true,
+    [DataGridColumnID.Sum]: true,
+    [DataGridColumnID.Metric]: true,
+    [DataGridColumnID.Tag]: true,
+  },
 };
 
 export const settingsSlice = createSlice({
@@ -43,6 +52,9 @@ export const settingsSlice = createSlice({
     setHighViewChart: (state, action: PayloadAction<HighView>) => {
       state.highViewChart = action.payload;
     },
+    setHighViewGrid: (state, action: PayloadAction<HighViewDataGrid>) => {
+      state.highViewGrid = action.payload;
+    },
   },
 });
 
@@ -53,6 +65,7 @@ export const {
   setPagesActivityChart,
   setLatencyChart,
   setHighViewChart,
+  setHighViewGrid,
 } = settingsSlice.actions;
 
 // Selectors
@@ -65,5 +78,7 @@ export const selectLatencyChart = (state: RootState) =>
   state.settings.latencyChart;
 export const selectHighViewChart = (state: RootState) =>
   state.settings.highViewChart;
+export const selectHighViewGrid = (state: RootState) =>
+  state.settings.highViewGrid;
 
 export default settingsSlice.reducer;

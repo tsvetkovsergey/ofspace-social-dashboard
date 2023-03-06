@@ -1,4 +1,4 @@
-import { DataGridColumn } from '../Types/DataGrid';
+import { DataGridColumn, DataGridColumnID } from '../Types/DataGrid';
 import {
   HighView,
   PagesActivity,
@@ -55,22 +55,45 @@ export const getSmallCardsData = (t: TFunction): SmallCard[] => [
   },
 ];
 
-export const getHighViewTableColumns = (t: TFunction): DataGridColumn[] => [
+// export const getHighViewTableColumns = (t: TFunction): DataGridColumn[] => [
+//   {
+//     id: 'value',
+//     title: t('Value'),
+//   },
+//   {
+//     id: 'sum',
+//     title: t('Sum'),
+//   },
+//   {
+//     id: 'metric',
+//     title: t('Metric'),
+//   },
+//   {
+//     id: 'tag',
+//     title: t('Tag'),
+//   },
+// ];
+
+export const highViewTableColumns: DataGridColumn[] = [
   {
-    id: 'value',
-    title: t('Value'),
+    id: DataGridColumnID.Value,
+    titleId: 'Value',
+    grid: '5fr',
   },
   {
-    id: 'sum',
-    title: t('Sum'),
+    id: DataGridColumnID.Sum,
+    titleId: 'Sum',
+    grid: '5fr',
   },
   {
-    id: 'metric',
-    title: t('Metric'),
+    id: DataGridColumnID.Metric,
+    titleId: 'Metric',
+    grid: '8fr',
   },
   {
-    id: 'tag',
-    title: t('Tag'),
+    id: DataGridColumnID.Tag,
+    titleId: 'Tag',
+    grid: '4fr',
   },
 ];
 

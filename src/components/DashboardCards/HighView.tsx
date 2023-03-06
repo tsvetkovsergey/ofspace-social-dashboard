@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectHighViewChart,
+  selectHighViewGrid,
   setHighViewChart,
 } from '../../store/settingsSlice';
 import PopupItem from '../../Types/PopupItem';
@@ -10,7 +11,7 @@ import Select from '../Select';
 import SquareButton from '../SquareButton';
 import DataGrid from '../DataGrid';
 import {
-  getHighViewTableColumns,
+  highViewTableColumns,
   highViewTableData,
   highViewCardsData,
 } from '../../data/data';
@@ -63,7 +64,14 @@ const getCardData = (chartType: HighViewType, t: TFunction) => [
 const HighView = () => {
   const dispatch = useDispatch();
   const highViewChart = useSelector(selectHighViewChart);
+  const gridActiveColumns = useSelector(selectHighViewGrid);
   const { t } = useTranslation();
+
+  const columns = highViewTableColumns.filter(
+    (col) => gridActiveColumns[col.id]
+  );
+
+  // const columns = useMemo(() => getHighViewTableColumns(t), [t]);
 
   const onChangeHandler = (itemId: string) => {
     dispatch(setHighViewChart(itemId as HighViewType));
@@ -72,7 +80,11 @@ const HighView = () => {
   return (
     <div>
       <CardHeader title={t('High view design')}>
-        <SquareButton icon={<TuneIcon />} />
+        <SquareButton
+          icon={<TuneIcon />}
+          columns={highViewTableColumns}
+          activeColumns={gridActiveColumns}
+        />
         {
           <Select
             activeItemID={highViewChart}
@@ -84,9 +96,10 @@ const HighView = () => {
       <div className="mt-3 flex gap-5">
         <div className="flex-1">
           <DataGrid
-            columns={getHighViewTableColumns(t)}
+            columns={columns}
             data={highViewTableData[highViewChart]}
-            gridStyle="grid-cols-[5fr,5fr,8fr,4fr]"
+            // gridStyle="5fr 5fr 8fr 4fr"
+            gridStyle={columns.reduce((acc, { grid }) => `${acc} ${grid}`, '')}
           />
         </div>
         <div className="flex flex-[0_1_12rem] flex-col justify-evenly gap-2">
