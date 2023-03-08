@@ -79,7 +79,7 @@ const Navbar = () => {
   // )?.title;
 
   return (
-    <div className="relative top-0 left-0 z-20 flex h-24 flex-[0_0_6rem] items-center justify-between bg-white shadow-lg dark:bg-slate-900 dark:shadow-none">
+    <div className="sticky top-0 left-0 z-20 flex h-24 flex-[0_0_6rem] items-center justify-between bg-white shadow-lg backdrop-blur-md dark:bg-slate-900 dark:bg-opacity-60">
       {/* LEFT SIDE */}
 
       <div className="flex items-center">

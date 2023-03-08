@@ -62,7 +62,7 @@ type Props = {};
 
 const Sidebar = (props: Props) => {
   return (
-    <aside className="h-full w-24 dark:bg-slate-900">
+    <aside className="fixed h-full w-24 overflow-y-auto bg-white dark:bg-slate-900 dark:bg-opacity-60">
       {/* First block of icons */}
       <nav className="mx-auto mt-8 w-fit rounded-full bg-primary-50 p-3 dark:bg-slate-800">
         <ul className="flex flex-col items-center gap-5">

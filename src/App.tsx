@@ -20,12 +20,12 @@ function App() {
   }, [language]);
 
   return (
-    <div className={`${mode === ThemeMode.Dark ? 'dark' : ''} `}>
-      <div className="flex h-screen w-screen flex-col dark:text-slate-100">
+    <div className={`${mode === ThemeMode.Dark ? 'dark' : ''}`}>
+      <div className="min-h-screen bg-primary-50 dark:bg-primary_dark-710 dark:text-slate-100">
         <Navbar />
-        <div className="flex flex-1 overflow-hidden ">
+        <div className="flex overflow-hidden">
           <Sidebar />
-          <main className="flex-1 overflow-scroll bg-primary-50 p-8 dark:bg-primary_dark-700">
+          <main className="ml-24 h-full flex-1 overflow-auto p-8">
             <Outlet />
           </main>
         </div>
