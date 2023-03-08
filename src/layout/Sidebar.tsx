@@ -11,12 +11,19 @@ const SidebarMenuItem = ({ to, icon }: { to: string; icon: JSX.Element }) => {
     <NavLink
       to={to}
       className={({ isActive }) =>
-        ` transition-all [&>svg]:transition-all ${
+        `mx-auto flex h-8 w-8 items-center justify-center rounded-full transition-all ${
           isActive
-            ? 'rounded-full text-primary-50 [&>svg]:rounded-full [&>svg]:bg-primary-710 [&>svg]:outline [&>svg]:outline-4 [&>svg]:outline-primary-710'
-            : 'rounded-full text-secondary-400 dark:text-white [&>svg]:rounded-full [&>svg]:bg-transparent [&>svg]:outline [&>svg]:outline-4 [&>svg]:outline-transparent [&>svg]:hover:bg-primary-200 [&>svg]:hover:shadow-offset [&>svg]:hover:outline-primary-200'
+            ? 'bg-primary-710 text-primary-50 dark:bg-blue-500 dark:hover:bg-blue-600'
+            : 'bg-transparent text-secondary-400 hover:bg-primary-200 dark:text-blue-100 dark:hover:bg-slate-500'
         }`
       }
+      // className={({ isActive }) =>
+      //   ` transition-all [&>svg]:transition-all ${
+      //     isActive
+      //       ? 'rounded-full text-primary-50 [&>svg]:rounded-full [&>svg]:bg-primary-710 [&>svg]:outline [&>svg]:outline-4 [&>svg]:outline-primary-710'
+      //       : 'rounded-full text-secondary-400 dark:text-white [&>svg]:rounded-full [&>svg]:bg-transparent [&>svg]:outline [&>svg]:outline-4 [&>svg]:outline-transparent [&>svg]:hover:bg-primary-200 [&>svg]:hover:shadow-offset [&>svg]:hover:outline-primary-200'
+      //   }`
+      // }
     >
       {icon}
     </NavLink>
@@ -58,7 +65,7 @@ const Sidebar = (props: Props) => {
     <aside className="h-full w-24 dark:bg-slate-900">
       {/* First block of icons */}
       <nav className="mx-auto mt-8 w-fit rounded-full bg-primary-50 p-3 dark:bg-slate-800">
-        <ul className="flex flex-col items-center gap-6">
+        <ul className="flex flex-col items-center gap-5">
           {menuItems.map((item, index) => (
             <li key={index}>
               <SidebarMenuItem to={item.path} icon={item.icon} />

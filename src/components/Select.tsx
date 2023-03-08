@@ -3,7 +3,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PopupItem from '../Types/PopupItem';
 import MenuItem from './MenuItem';
 import { AnimatePresence, motion } from 'framer-motion';
-import { scaleOnTap } from '../data/animationSettings';
+import { popupScaleFadeIn, scaleOnTap } from '../data/animationSettings';
+import useClickOutsideListener from '../hooks/useClickOutsideListener';
 
 type Props = {
   activeItemID: string;
@@ -21,6 +22,8 @@ const Select = ({
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement | null>(null);
 
+  useClickOutsideListener(isOpen, setIsOpen, selectRef);
+
   const buttonText = options.find((opt) => opt.id === activeItemID)?.title;
 
   const menuClickHandler = (event: React.MouseEvent) => {
@@ -36,35 +39,11 @@ const Select = ({
     }
   };
 
-  // Listen for clicks outside popup menu to close the menu
-  useEffect(() => {
-    const clickHandler = (ev: MouseEvent) => {
-      // Close popup menu only if you clicked
-      // outside select button and menu
-      if (
-        ev.target !== null &&
-        selectRef.current !== null &&
-        ev.target instanceof Node &&
-        !selectRef.current.contains(ev.target)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    isOpen && document.addEventListener('click', clickHandler);
-    !isOpen && document.removeEventListener('click', clickHandler);
-
-    return () => document.removeEventListener('click', clickHandler);
-  }, [isOpen]);
-
   const popupMenu = (
     <motion.ul
       className="absolute top-full right-0 z-20 mt-2 origin-top-right cursor-default rounded-lg border-[1px] border-primary-220 bg-primary-200 py-2 text-left text-sm text-typo-700 shadow-lg dark:border-slate-400 dark:bg-slate-500 dark:text-slate-300"
       onClick={menuClickHandler}
-      initial={{ opacity: 0, scale: 0, x: 20 }}
-      animate={{ opacity: 1, scale: 1, x: 0 }}
-      exit={{ opacity: 0, x: -20 }}
-      transition={{ ease: 'easeOut', duration: 0.3 }}
+      {...popupScaleFadeIn}
     >
       {options.map((option) => (
         <MenuItem
