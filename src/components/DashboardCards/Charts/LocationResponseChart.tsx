@@ -2,17 +2,32 @@ import { ResponsiveLine } from '@nivo/line';
 import { useAppSelector } from '../../../store/hooks';
 import { selectMode } from '../../../store/themeSlice';
 import { ThemeMode } from '../../../Types/Theme';
-import { Theme } from '@nivo/core';
 import { ResponseTime } from '../../../Types/Settings';
 import createChartTheme from './themeCreator';
+import { useMediaQuery } from '@mui/material';
 
 type Props = {
   data: any;
   type: ResponseTime;
 };
 
+const formatMonthNames = (month: string) => {
+  switch (month) {
+    case 'Февр':
+    case 'Апр':
+    case 'Июнь':
+    case 'Июль':
+    case 'Сент':
+    case 'Нояб':
+      return '.';
+    default:
+      return month;
+  }
+};
+
 const LocationResponseChart = ({ data, type }: Props) => {
   const isDarkMode = useAppSelector(selectMode) === ThemeMode.Dark;
+  const isLargeDisplay = useMediaQuery('(min-width:1600px)');
 
   return (
     <ResponsiveLine
@@ -38,6 +53,10 @@ const LocationResponseChart = ({ data, type }: Props) => {
       fill={[{ match: '*', id: 'gradient' }]}
       curve="natural"
       xScale={{ type: 'point' }}
+      // xFormat={(f) => {
+      //   console.log(f);
+      //   return `${f}+`;
+      // }}
       yScale={{
         type: 'linear',
         min: 0,
@@ -58,6 +77,11 @@ const LocationResponseChart = ({ data, type }: Props) => {
         tickSize: 0,
         tickPadding: 10,
         tickRotation: 0,
+        format: (v) =>
+          // Format month names for small desktop displays
+          type === ResponseTime.Monthly && !isLargeDisplay
+            ? formatMonthNames(v)
+            : v,
       }}
       axisLeft={{
         // orient: 'left',

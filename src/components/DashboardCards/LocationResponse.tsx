@@ -9,7 +9,10 @@ import { ResponseTime } from '../../Types/Settings';
 import CardHeader from '../CardHeader';
 
 import LocationResponseChart from './Charts/LocationResponseChart';
-import { locationResponseChartData } from '../../data/data';
+import {
+  getLocationResponseChartData,
+  locationResponseChartData,
+} from '../../data/data';
 import Select from '../Select';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
@@ -55,7 +58,8 @@ const LocationResponse = (props: Props) => {
       </CardHeader>
       <div className="h-44 w-full">
         <LocationResponseChart
-          data={locationResponseChartData[responseTimeChart]}
+          // data={locationResponseChartData[responseTimeChart]}
+          data={getLocationResponseChartData(t, responseTimeChart)}
           type={responseTimeChart}
         />
       </div>

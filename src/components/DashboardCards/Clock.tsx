@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 
 import GardenerImage from '../../assets/gardener.webp';
 import GardenerImageDarkMode from '../../assets/gardener_darkmode.webp';
@@ -43,7 +43,7 @@ const Clock = (props: Props) => {
   const hourHandRef = useRef<HTMLImageElement | null>(null);
   const minuteHandRef = useRef<HTMLImageElement | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const setDegrees = () => {
       const { minutesDeg, hoursDeg } = getCurrentTimeDegrees();
 
@@ -82,7 +82,7 @@ const Clock = (props: Props) => {
           }
           alt="hours hand"
           ref={hourHandRef}
-          className={`absolute right-1/2 bottom-0 mr-[0.15rem] mb-[0.08rem] h-12 origin-bottom`}
+          className={`absolute right-1/2 bottom-0 mr-[0.15rem] mb-[0.08rem] h-12 origin-bottom transition`}
         />
         <img
           src={
@@ -92,7 +92,7 @@ const Clock = (props: Props) => {
           }
           alt="minutes hand"
           ref={minuteHandRef}
-          className={`absolute right-1/2 bottom-0 mr-[0.15rem] mb-[0.08rem] h-14 origin-bottom translate-x-1/2`}
+          className={`absolute right-1/2 bottom-0 mr-[0.15rem] mb-[0.08rem] h-14 origin-bottom translate-x-1/2 transition`}
         />
       </div>
     </div>

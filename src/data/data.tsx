@@ -201,6 +201,22 @@ export const highViewCardsData = {
   },
 };
 
+export const getLocationResponseChartData = (
+  t: TFunction,
+  resTime: ResponseTime
+) => {
+  const chartData = locationResponseChartData[resTime];
+  const translatedData = chartData[0].data.reduce<{ x: string; y: number }[]>(
+    (acc, { x, y }) => {
+      const translatedItem = { x: t(x), y };
+      return [...acc, translatedItem];
+    },
+    []
+  );
+  const translatedChartData = [{ ...chartData[0], data: translatedData }];
+  return translatedChartData;
+};
+
 export const locationResponseChartData = {
   [ResponseTime.Daily]: [
     {

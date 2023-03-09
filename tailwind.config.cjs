@@ -72,6 +72,10 @@ module.exports = {
         sidebarIcon: 'box-shadow, background-color, outline-color',
       },
       backgroundImage: {
+        'dark-bg-gradient':
+          // 'linear-gradient(109.6deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%)',
+          // 'linear-gradient(50deg, rgb(5,5,16) 0%, rgb(35,9,31) 40%, rgb(120,85,137) 60%, rgb(35,9,31) 80%, rgb(5,5,16) 100%)',
+          'linear-gradient(50deg, rgb(5,5,16) 0%, rgb(34,23,47) 15%, rgb(35,9,31) 50%, rgb(68,48,78) 75%, rgb(35,9,31) 90%, rgb(5,5,16) 100%)',
         'account-reached':
           'url("/src/assets/acc_reached.svg"), linear-gradient(180deg, rgba(0,50,182,1) 0%, rgba(52,72,211,1) 100%)',
         'account-engaged':

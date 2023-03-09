@@ -79,7 +79,7 @@ const Navbar = () => {
   // )?.title;
 
   return (
-    <div className="sticky top-0 left-0 z-20 flex h-24 flex-[0_0_6rem] items-center justify-between bg-white shadow-lg backdrop-blur-md dark:bg-slate-900 dark:bg-opacity-60">
+    <div className="sticky top-0 left-0 z-20 flex h-24 flex-[0_0_6rem] items-center justify-between bg-white shadow-lg dark:bg-slate-900 dark:bg-opacity-60 dark:backdrop-blur-md">
       {/* LEFT SIDE */}
 
       <div className="flex items-center">
@@ -115,11 +115,11 @@ const Navbar = () => {
       {/* RIGHT SIDE */}
       <div className="flex items-center">
         {/* Search Input */}
-        <div className="group relative mr-2 flex items-center rounded-lg bg-primary-200 transition hover:shadow-lg dark:bg-slate-800 dark:hover:bg-blue-500">
+        <div className="group relative mr-2 flex items-center rounded-lg bg-primary-200 transition hover:shadow-lg dark:bg-slate-600 dark:bg-opacity-20 dark:hover:bg-blue-500 dark:[&:hover_svg]:text-slate-50">
           <input
             className={`${
               searchInputText ? 'w-36' : 'w-[11rem]'
-            } bg-transparent py-2 pl-4 text-sm text-typo-600 placeholder:text-typo-400 placeholder:transition autofill:rounded-lg autofill:shadow-[inset_0_0_0_100px_#eff2fa] autofill:transition focus:outline-none dark:text-white dark:placeholder:text-typo_dark-700 dark:autofill:shadow-[inset_0_0_0_100px_#1e293b] dark:group-hover:placeholder:text-white dark:group-hover:autofill:shadow-[inset_0_0_0_100px_#3b82f6]`}
+            } bg-transparent py-2 pl-4 text-sm text-typo-600 placeholder:text-typo-400 placeholder:transition autofill:rounded-lg autofill:shadow-[inset_0_0_0_100px_#eff2fa] autofill:transition focus:outline-none dark:text-white dark:placeholder:text-slate-600 dark:autofill:shadow-[inset_0_0_0_100px_#1e293b] dark:group-hover:placeholder:text-white dark:group-hover:autofill:shadow-[inset_0_0_0_100px_#3b82f6]`}
             type="text"
             name="search"
             value={searchInputText}
@@ -129,7 +129,7 @@ const Navbar = () => {
           <button disabled={!searchInputText}>
             {searchInputText && (
               <Clear
-                className="text-typo-400 dark:text-white"
+                className="text-typo-400 dark:text-slate-300"
                 sx={{
                   height: '1.4rem',
                   width: '1.4rem',
@@ -141,11 +141,11 @@ const Navbar = () => {
           </button>
           {/* Buttons divider */}
           {searchInputText && (
-            <div className="absolute right-[2.2rem] h-[1.4rem] w-[1px] bg-typo-400"></div>
+            <div className="absolute right-[2.2rem] h-[1.4rem] w-[1px] bg-typo-400 dark:bg-slate-300 dark:group-hover:bg-slate-50"></div>
           )}
           <button>
             <Search
-              className="text-typo-400 dark:text-slate-50"
+              className="text-typo-400 dark:text-slate-300"
               sx={{
                 height: '1.4rem',
                 width: '1.4rem',

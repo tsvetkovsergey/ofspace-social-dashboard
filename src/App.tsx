@@ -21,7 +21,8 @@ function App() {
 
   return (
     <div className={`${mode === ThemeMode.Dark ? 'dark' : ''}`}>
-      <div className="min-h-screen bg-primary-50 dark:bg-primary_dark-710 dark:text-slate-100">
+      {/* <div className="min-h-screen bg-primary-50 dark:bg-primary_dark-710 dark:text-slate-100"> */}
+      <div className="dark:bg-dark-bg-gradient min-h-screen bg-primary-50 dark:text-slate-100">
         <Navbar />
         <div className="flex overflow-hidden">
           <Sidebar />
