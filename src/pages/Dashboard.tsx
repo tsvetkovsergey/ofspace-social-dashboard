@@ -16,14 +16,14 @@ const Dashboard = (props: Props) => {
     // Grid 4cols 5cols 3cols
     // <div className="grid grid-cols-12 grid-rows-6 gap-8">
     // <div className="grid-cols-[repeat(10,minmax(0,1fr))_fit-content_fit-content]] grid gap-8">
-    <div className="grid grid-cols-[repeat(9,minmax(0,1fr))_repeat(3,73px)] gap-8">
-      <Card className="col-span-4 row-span-2">
+    <div className="grid grid-cols-[repeat(9,minmax(0,1fr))_repeat(3,73px)] grid-rows-[auto_1fr_1fr_auto] gap-8">
+      <Card className="col-span-4">
         <LocationResponse />
       </Card>
-      <Card className="col-span-5 row-span-2">
+      <Card className="col-span-5">
         <PagesActivity />
       </Card>
-      <Card className="col-span-3 row-span-2 h-64">
+      <Card className="col-span-3 h-64">
         <Clock />
       </Card>
       <SmallCard className="col-span-2 -mb-1 -mr-1" cardType={0} />
@@ -33,13 +33,13 @@ const Dashboard = (props: Props) => {
       </Card>
       <SmallCard className="col-span-2 -mt-1 -mr-1" cardType={2} />
       <SmallCard className="col-span-2 -mt-1 -ml-1" cardType={3} />
-      <Card className="col-span-4 row-span-2">
+      <Card className="col-span-4">
         <Latency />
       </Card>
-      <Card className="col-span-5 row-span-2">
+      <Card className="col-span-5">
         <LessView />
       </Card>
-      <Card className="col-span-3 row-span-2">
+      <Card className="col-span-3">
         <MostActive />
       </Card>
     </div>
