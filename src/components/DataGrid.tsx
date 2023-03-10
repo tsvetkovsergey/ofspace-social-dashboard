@@ -13,7 +13,7 @@ const generateRows = ({ columns, data }: Props) => {
   data.forEach((item) => {
     const row = columns.map((col, index) => (
       <td
-        className="py-4 group-first:pt-0 group-last:border-none group-last:pb-0"
+        className="flex items-center py-3 group-first:pt-0 group-last:border-none group-last:pb-0"
         key={index}
       >
         {item[col.id]}
@@ -42,7 +42,7 @@ const DataGrid = ({ columns, data, gridStyle }: Props) => {
       <thead className="contents text-sm text-typo-300 dark:text-inherit">
         <tr className="contents">
           {columns.map((col, index) => (
-            <th className="pt-2 pb-5 text-left font-medium" key={index}>
+            <th className="pt-2 pb-4 text-left text-sm font-medium" key={index}>
               {t(col.titleId)}
             </th>
           ))}

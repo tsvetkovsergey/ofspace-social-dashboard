@@ -213,11 +213,10 @@ const Navbar = () => {
         />
 
         {/* Profile Button */}
-        <button className="-ml-4 mr-4 flex items-center rounded-lg px-4 py-2 transition hover:bg-primary-200 hover:shadow-lg dark:text-slate-300 dark:hover:bg-blue-500 dark:hover:text-slate-50 dark:hover:shadow-none dark:[&_svg]:text-slate-300 dark:[&_svg]:transition dark:[&:hover_svg]:text-slate-50">
+        <button className="-ml-4 mr-4 flex items-center rounded-lg px-4 py-2 transition hover:bg-primary-200 hover:shadow-lg dark:text-slate-300 dark:hover:bg-blue-500 dark:hover:text-slate-50 dark:hover:shadow-none dark:[&:hover_svg]:text-slate-50 dark:[&_svg]:text-slate-300 dark:[&_svg]:transition">
           <RoundIcon
             icon={<img src={profileImage} alt="profile picture" />}
-            iconStyle="bg-typo-500 mr-4 dark:bg-blue-100"
-            isInNavbar={true}
+            iconStyle="bg-typo-500 mr-4 dark:bg-blue-100 h-10 w-10 [&>img]:top-1"
           />
           <p className="text-sm font-medium">Alex Smith</p>
           <ExpandMoreIconComponent />

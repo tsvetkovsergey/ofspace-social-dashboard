@@ -8,14 +8,14 @@ const mostActiveUsers = [
   {
     id: 'u1',
     icon: <img alt="Most active user 1 image" src={UserImage_1} />,
-    iconStyle: 'bg-pink-300',
+    iconStyle: 'bg-pink-300 h-11 w-11 [&>img]:top-2',
     name: 'Alex Adam',
     email: 'adamalex@ase.com',
   },
   {
     id: 'u2',
     icon: <img alt="Most active user 2 image" src={UserImage_2} />,
-    iconStyle: 'bg-amber-100',
+    iconStyle: 'bg-amber-100 h-11 w-11 [&>img]:top-2',
     name: 'John Smith',
     email: 'smithjohn@ase.com',
   },
@@ -34,7 +34,7 @@ const MostActive = () => {
             icon={user.icon}
             title={user.name}
             text={user.email}
-            cardStyle="hover:bg-slate-50 border bg-white dark:bg-blue-500 dark:[&_p]:text-slate-200 border-transparent transition hover:border-slate-100"
+            cardStyle="hover:bg-slate-50 border bg-white dark:bg-blue-500 dark:[&_p]:text-slate-200 border-transparent transition hover:border-slate-100 [&_div]:h-11"
             iconStyle={user.iconStyle}
           />
         ))}

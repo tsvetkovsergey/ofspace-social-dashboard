@@ -14,9 +14,9 @@ const StatCard = ({ icon, title, text, cardStyle, iconStyle }: Props) => {
       className={`flex items-center gap-2 rounded-xl p-4 shadow-lg ${cardStyle}`}
     >
       <RoundIcon icon={icon} iconStyle={iconStyle} />
-      <div>
-        <h3 className="text-sm font-medium">{title}</h3>
-        <p className="mt-1 text-sm font-extralight text-typo-600">{text}</p>
+      <div className="flex flex-col justify-between text-sm">
+        <h3 className="font-medium">{title}</h3>
+        <p className="font-extralight text-typo-600">{text}</p>
       </div>
     </div>
   );
