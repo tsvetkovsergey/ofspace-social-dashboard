@@ -15,7 +15,7 @@ import QuestionMark from '@mui/icons-material/QuestionMark';
 
 import profileImage from '../assets/profile_2.png';
 import logoVector from '../assets/logo_vector.svg';
-import PopupMenu from '../components/PopupMenu';
+// import PopupMenu from '../components/PopupMenu';
 import { Language } from '../Types/Settings';
 import { selectLanguage, setLanguage } from '../store/settingsSlice';
 import RoundIcon from '../components/RoundIcon';

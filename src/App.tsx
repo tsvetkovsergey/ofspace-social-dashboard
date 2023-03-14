@@ -14,6 +14,16 @@ function App() {
   const { i18n } = useTranslation();
   const language = useSelector(selectLanguage);
 
+  useEffect(() => {
+    if (mode === ThemeMode.Dark) {
+      document.documentElement.style.backgroundColor = '#22172f';
+    }
+
+    if (mode === ThemeMode.Light) {
+      document.documentElement.style.backgroundColor = '#f7fbff';
+    }
+  }, [mode]);
+
   // Set language for this app
   useEffect(() => {
     i18n.changeLanguage(language);
@@ -22,7 +32,7 @@ function App() {
   return (
     <div className={`${mode === ThemeMode.Dark ? 'dark' : ''}`}>
       {/* <div className="min-h-screen bg-primary-50 dark:bg-primary_dark-710 dark:text-slate-100"> */}
-      <div className="dark:bg-dark-bg-gradient min-h-screen bg-primary-50 dark:text-slate-100">
+      <div className="min-h-screen bg-primary-50 dark:bg-dark-bg-gradient dark:text-slate-100">
         <Navbar />
         <div className="flex overflow-hidden">
           <Sidebar />

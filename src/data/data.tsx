@@ -16,6 +16,10 @@ import CallMergeIcon from '@mui/icons-material/CallMerge';
 import ModeStandbyIcon from '@mui/icons-material/ModeStandby';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
+/////////////////
+// SMALL CARDS //
+/////////////////
+
 interface SmallCard {
   title: string;
   count: number;
@@ -54,6 +58,10 @@ export const getSmallCardsData = (t: TFunction): SmallCard[] => [
     icon: <ShoppingCartIcon />,
   },
 ];
+
+///////////////
+// HIGH VIEW //
+///////////////
 
 // export const getHighViewTableColumns = (t: TFunction): DataGridColumn[] => [
 //   {
@@ -114,78 +122,72 @@ const highViewTableGenerateMetric = ({
   </div>
 );
 
+const highViewCommonTableData = [
+  {
+    id: 'i1',
+    metric: highViewTableGenerateMetric({
+      icon: <DiamondOutlinedIcon />,
+      text: 'diamond.rack.req',
+      styles:
+        '[&>svg]:bg-primary-300 [&>svg]:text-primary-710 dark:[&>svg]:bg-teal-100 dark:[&>svg]:text-teal-600',
+    }),
+    tag: 'diamond',
+  },
+  {
+    id: 'i2',
+    metric: highViewTableGenerateMetric({
+      icon: <RestoreIcon />,
+      text: 'trace.rack.req',
+      styles:
+        '[&>svg]:bg-additional-110 [&>svg]:text-additional-100 dark:[&>svg]:bg-violet-100 dark:[&>svg]:text-violet-600',
+    }),
+    tag: 'trace',
+  },
+  {
+    id: 'i3',
+    metric: highViewTableGenerateMetric({
+      icon: <ExploreOutlinedIcon />,
+      text: 'explore.rack.req',
+      styles:
+        '[&>svg]:bg-secondary-200 [&>svg]:text-secondary-500 dark:[&>svg]:bg-fuchsia-100 dark:[&>svg]:text-fuchsia-600',
+    }),
+    tag: 'explore',
+  },
+];
+
 export const highViewTableData = {
   [HighView.Weekly]: [
     {
-      id: 'i1',
+      ...highViewCommonTableData[0],
       value: '1.41 errs',
       sum: '51.355 errs',
-      metric: highViewTableGenerateMetric({
-        icon: <DiamondOutlinedIcon />,
-        text: 'diamond.rack.req',
-        styles:
-          '[&>svg]:bg-primary-300 [&>svg]:text-primary-710 dark:[&>svg]:bg-teal-100 dark:[&>svg]:text-teal-600',
-      }),
-      tag: 'diamond',
     },
     {
-      id: 'i2',
+      ...highViewCommonTableData[1],
       value: '3.44 errs',
       sum: '343.06 errs',
-      metric: highViewTableGenerateMetric({
-        icon: <RestoreIcon />,
-        text: 'trace.rack.req',
-        styles:
-          '[&>svg]:bg-additional-110 [&>svg]:text-additional-100 dark:[&>svg]:bg-violet-100 dark:[&>svg]:text-violet-600',
-      }),
-      tag: 'trace',
     },
     {
-      id: 'i3',
+      ...highViewCommonTableData[2],
       value: '2.14 errs',
       sum: '112.023 errs',
-      metric: highViewTableGenerateMetric({
-        icon: <ExploreOutlinedIcon />,
-        text: 'explore.rack.req',
-        styles:
-          '[&>svg]:bg-secondary-200 [&>svg]:text-secondary-500 dark:[&>svg]:bg-fuchsia-100 dark:[&>svg]:text-fuchsia-600',
-      }),
-      tag: 'explore',
     },
   ],
   [HighView.Daily]: [
     {
-      id: 'i1',
+      ...highViewCommonTableData[0],
       value: '0.35 errs',
       sum: '12.936 errs',
-      metric: highViewTableGenerateMetric({
-        icon: <DiamondOutlinedIcon />,
-        text: 'diamond.rack.req',
-        styles: '[&>svg]:bg-primary-300 [&>svg]:text-primary-710',
-      }),
-      tag: 'diamond',
     },
     {
-      id: 'i2',
+      ...highViewCommonTableData[1],
       value: '0.95 errs',
       sum: '52.15 errs',
-      metric: highViewTableGenerateMetric({
-        icon: <RestoreIcon />,
-        text: 'trace.rack.req',
-        styles: '[&>svg]:bg-additional-110 [&>svg]:text-additional-100',
-      }),
-      tag: 'trace',
     },
     {
-      id: 'i3',
+      ...highViewCommonTableData[2],
       value: '0.67 errs',
       sum: '19.217 errs',
-      metric: highViewTableGenerateMetric({
-        icon: <ExploreOutlinedIcon />,
-        text: 'explore.rack.req',
-        styles: '[&>svg]:bg-secondary-200 [&>svg]:text-secondary-500',
-      }),
-      tag: 'explore',
     },
   ],
 };
@@ -200,6 +202,10 @@ export const highViewCardsData = {
     totalLike: 3.505,
   },
 };
+
+///////////////////////
+// LOCATION RESPONSE //
+///////////////////////
 
 export const getLocationResponseChartData = (
   t: TFunction,
@@ -257,6 +263,10 @@ export const locationResponseChartData = {
   ],
 };
 
+////////////////////
+// PAGES ACTIVITY //
+////////////////////
+
 interface PagesActivityMonthDataType {
   month: string;
   viewers: number;
@@ -267,6 +277,30 @@ interface PagesActivityDayDataType {
   viewers: number;
   followers: number;
 }
+const isMonthDataType = (
+  data: PagesActivityMonthDataType | PagesActivityDayDataType
+): data is PagesActivityMonthDataType => {
+  return (data as PagesActivityMonthDataType).month !== undefined;
+};
+export const getPagesActivityChartData = (
+  t: TFunction,
+  type: PagesActivity
+) => {
+  const data = pagesActivityChartData[type];
+  return data.map((item) => {
+    if (isMonthDataType(item)) {
+      return {
+        ...item,
+        month: t(item.month),
+      };
+    } else {
+      return {
+        ...item,
+        day: t(item.day),
+      };
+    }
+  });
+};
 export const pagesActivityChartData: {
   [PagesActivity.Monthly]: PagesActivityMonthDataType[];
   [PagesActivity.Daily]: PagesActivityDayDataType[];
@@ -356,6 +390,10 @@ export const pagesActivityChartData: {
     },
   ],
 };
+
+///////////////////
+// LATENCY CHART //
+///////////////////
 
 export const latencyChartData = {
   [LatencyType.Daily]: [

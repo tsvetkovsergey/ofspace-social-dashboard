@@ -8,7 +8,10 @@ import { PagesActivity as PagesActivityType } from '../../Types/Settings';
 import CardHeader from '../CardHeader';
 import Select from '../Select';
 import PagesActivityChart from './Charts/PagesActivityChart';
-import { pagesActivityChartData } from '../../data/data';
+import {
+  getPagesActivityChartData,
+  pagesActivityChartData,
+} from '../../data/data';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 
@@ -57,7 +60,8 @@ const PagesActivity = () => {
       </div>
       <div id="pagesActivityChartContainer" className="h-40 w-full">
         <PagesActivityChart
-          data={pagesActivityChartData[pagesActivityChart]}
+          // data={pagesActivityChartData[pagesActivityChart]}
+          data={getPagesActivityChartData(t, pagesActivityChart)}
           type={pagesActivityChart}
         />
       </div>
