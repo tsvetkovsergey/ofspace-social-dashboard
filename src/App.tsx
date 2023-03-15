@@ -1,19 +1,38 @@
+import { useMediaQuery } from '@mui/material';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import Navbar from './layout/Navbar';
 import Sidebar from './layout/Sidebar';
 import { useAppSelector } from './store/hooks';
-import { selectLanguage } from './store/settingsSlice';
-import { selectMode } from './store/themeSlice';
+import { selectLanguage, setLanguage } from './store/settingsSlice';
+import { selectMode, setMode } from './store/themeSlice';
+import { Language } from './Types/Settings';
 import { ThemeMode } from './Types/Theme';
 
 function App() {
+  const systemThemeIsDark = useMediaQuery('(prefers-color-scheme: dark)');
   const mode = useAppSelector(selectMode);
   const { i18n } = useTranslation();
   const language = useSelector(selectLanguage);
+  const dispatch = useDispatch();
 
+  // Set Initial Theme Settings
+  useEffect(() => {
+    const systemMode = systemThemeIsDark ? ThemeMode.Dark : ThemeMode.Light;
+    dispatch(setMode(systemMode));
+  }, []);
+
+  // Set Initial Language Settings
+  useEffect(() => {
+    const systemLanguage = navigator.language.startsWith('ru')
+      ? Language.Russian
+      : Language.English;
+    dispatch(setLanguage(systemLanguage));
+  }, []);
+
+  // Set document bg based on theme
   useEffect(() => {
     if (mode === ThemeMode.Dark) {
       document.documentElement.style.backgroundColor = '#22172f';
@@ -24,7 +43,7 @@ function App() {
     }
   }, [mode]);
 
-  // Set language for this app
+  // Set language for i18n
   useEffect(() => {
     i18n.changeLanguage(language);
   }, [language]);

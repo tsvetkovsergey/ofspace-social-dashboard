@@ -6,10 +6,12 @@ interface ThemeState {
   mode: ThemeMode;
 }
 
+// Initial State
 const initialState: ThemeState = {
-  mode: ThemeMode.Dark,
+  mode: ThemeMode.Light,
 };
 
+// Reducers
 export const themeSlice = createSlice({
   name: 'theme',
   initialState,

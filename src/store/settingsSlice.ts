@@ -10,7 +10,7 @@ import {
 } from '../Types/Settings';
 import { RootState } from './store';
 
-interface InitialStateTypes {
+interface stateTypes {
   language: Language;
   responseTimeChart: ResponseTime;
   pagesActivityChart: PagesActivity;
@@ -19,7 +19,8 @@ interface InitialStateTypes {
   highViewGrid: HighViewDataGrid;
 }
 
-const initialState: InitialStateTypes = {
+// Initial State
+const initialState: stateTypes = {
   language: Language.Russian,
   responseTimeChart: ResponseTime.Monthly,
   pagesActivityChart: PagesActivity.Monthly,
@@ -33,6 +34,7 @@ const initialState: InitialStateTypes = {
   },
 };
 
+// Reducers
 export const settingsSlice = createSlice({
   name: 'settings',
   initialState,

@@ -100,13 +100,24 @@ const Navbar = () => {
           <h1 className="text-lg font-bold text-typo-800 dark:text-blue-500">
             {t('Welcome to Dashboard')}
           </h1>
+          {/* Data */}
           {/* button styles for hover */}
           {/* transition hover:bg-primary-200 hover:shadow-lg dark:hover:bg-blue-500 dark:hover:text-white dark:hover:shadow-none */}
           <div className="-ml-2 flex items-center rounded-lg py-1 px-2 text-typo-600 dark:text-slate-400">
-            <p className="text-sm">{`${date.getDate()} ${date.toLocaleDateString(
+            {/* <p className="text-sm">{`${date.getDate()} ${date.toLocaleDateString(
               'en',
               { month: 'long' }
-            )} ${date.getFullYear()}`}</p>
+            )} ${date.getFullYear()}`}</p> */}
+            <p className="text-sm">
+              {new Date().toLocaleDateString(
+                language === Language.Russian ? 'ru-RU' : 'en-US',
+                {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                }
+              )}
+            </p>
             {/* <ExpandMoreIconComponent /> */}
           </div>
         </div>
