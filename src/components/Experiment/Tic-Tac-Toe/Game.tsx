@@ -19,25 +19,24 @@ const winCombinations = [
 
 const Game = () => {
   const [gameState, setGameState] = useState(initialGameState);
-  const [prevGameState, setPrevGameState] = useState(initialGameState);
-  // const [isXNext, setIsXNext] = useState(true);
   const [history, setHistory] = useState<GameState[]>([initialGameState]);
-  const [historyPosition, setHistoryPosition] = useState(0);
-  const isPlayingRef = useRef(true);
+  const [winner, setWinner] = useState('');
 
-  const handleHistoryClick = (gameState: GameState, index: number) => {
-    setHistoryPosition(index);
+  const getMovesCount = () => {
+    return gameState.filter((gs) => gs).length;
+  };
+
+  const handleHistoryClick = (gameState: GameState) => {
     setGameState(gameState);
   };
 
   const handleSquareClick = (clickedIndex: number) => {
     // If game is finished or square is not empty do nothing
-    if (!isPlayingRef.current || gameState[clickedIndex]) return;
+    if (winner || gameState[clickedIndex]) return;
 
     // Make move and update game state
-    const isXNext = historyPosition % 2 === 0;
     const updatedGameState = gameState.map((sq, index) =>
-      index === clickedIndex ? (isXNext ? 'X' : 'O') : sq
+      index === clickedIndex ? (getMovesCount() % 2 === 0 ? 'X' : 'O') : sq
     );
 
     // Update game state
@@ -46,55 +45,57 @@ const Game = () => {
     // Update history
     addToHistory(updatedGameState);
 
-    // Define who plays next 'X' or 'O'
-    // setIsXNext((curState) => !curState);
+    // Check if we have a winner
+    checkGameStatus(updatedGameState);
   };
 
-  const checkGameStatus = () => {
+  const checkGameStatus = (stateToCheck: GameState) => {
     // Compare current positions on board
     // with win combinations
-    winCombinations.forEach((combination) => {
+    for (const combination of winCombinations) {
       if (
-        gameState[combination[0]] &&
-        gameState[combination[0]] === gameState[combination[1]] &&
-        gameState[combination[0]] === gameState[combination[2]]
+        stateToCheck[combination[0]] &&
+        stateToCheck[combination[0]] === stateToCheck[combination[1]] &&
+        stateToCheck[combination[0]] === stateToCheck[combination[2]]
       ) {
-        alert(`${gameState[combination[0]]} win!!!`);
-        isPlayingRef.current = false;
+        setWinner(stateToCheck[combination[0]]);
+        break;
       }
-    });
+    }
   };
 
   const addToHistory = (gameStateToAdd: GameState) => {
     // If you are in the last move just
-    // update your history and position
-    if (historyPosition === history.length - 1) {
-      setHistoryPosition(history.length);
+    // update your history
+    if (getMovesCount() === history.length - 1) {
       setHistory([...history, gameStateToAdd]);
     }
     // If you are not in the last move
     // remove last moves
-    if (historyPosition < history.length - 1) {
+    if (getMovesCount() < history.length - 1) {
       setHistory(
-        history.slice(0, historyPosition + 1).concat([gameStateToAdd])
+        history.slice(0, getMovesCount() + 1).concat([gameStateToAdd])
       );
-      setHistoryPosition(historyPosition + 1);
     }
   };
 
-  // If game not finished and gameState has changed
-  // check game status
-  if (isPlayingRef.current && gameState !== prevGameState) {
-    checkGameStatus();
-    setPrevGameState(gameState);
-  }
+  const status = winner
+    ? `🎉 Winner: ${winner}`
+    : `Next player: ${getMovesCount() % 2 === 0 ? 'X' : 'O'}`;
 
   return (
     <div className="mx-auto w-max rounded-md bg-slate-50 p-10 text-gray-800">
-      <h1 className="mb-10 text-lg font-semibold">Tic Tac Toe Game</h1>
+      <h1 className="mb-4 text-lg font-semibold">Tic Tac Toe Game</h1>
+      <p className={`mb-4 ${winner && 'font-semibold text-fuchsia-500'}`}>
+        {status}
+      </p>
       <div className="flex gap-10">
         <Board gameState={gameState} handleSquareClick={handleSquareClick} />
-        <History history={history} handleClick={handleHistoryClick} />
+        <History
+          history={history}
+          position={getMovesCount()}
+          handleClick={handleHistoryClick}
+        />
       </div>
     </div>
   );
