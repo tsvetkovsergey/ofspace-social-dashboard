@@ -12,6 +12,7 @@ import './i18n';
 import Dashboard from './pages/Dashboard';
 import Schedule from './pages/Schedule';
 import ErrorPage from './pages/404';
+import Team from './pages/Team';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Dashboard /> },
       { path: '/schedule', element: <Schedule /> },
+      { path: 'team', element: <Team /> },
       {
         path: '/*',
         element: <ErrorPage />,

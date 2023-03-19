@@ -10,6 +10,7 @@ React SVG
 Lodash Merge
 i18next
 Framer Motion
+MUI X-Data-Grid
 
 # Dev dependencies
 
