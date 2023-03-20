@@ -13,6 +13,7 @@ import Dashboard from './pages/Dashboard';
 import Schedule from './pages/Schedule';
 import ErrorPage from './pages/404';
 import Team from './pages/Team';
+import Geography from './pages/Geography';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
       { index: true, element: <Dashboard /> },
       { path: '/schedule', element: <Schedule /> },
       { path: 'team', element: <Team /> },
+      { path: 'geography', element: <Geography /> },
       {
         path: '/*',
         element: <ErrorPage />,

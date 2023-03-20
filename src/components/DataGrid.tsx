@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import useNotNullableTranslation from '../hooks/useNotNullableTranslation';
 import { DataGridColumn } from '../Types/DataGrid';
 
 type Props = {
@@ -26,7 +26,7 @@ const generateRows = ({ columns, data }: Props) => {
 
 const DataGrid = ({ columns, data, gridStyle }: Props) => {
   const [rows, setRows] = useState<JSX.Element[][]>([]);
-  const { t } = useTranslation();
+  const { t } = useNotNullableTranslation();
 
   useEffect(() => setRows(generateRows({ columns, data })), [columns, data]);
 

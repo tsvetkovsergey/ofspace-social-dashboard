@@ -1,13 +1,13 @@
 import Card from '../components/Card';
 
-import Clock from '../components/DashboardCards/Clock';
-import HighView from '../components/DashboardCards/HighView';
-import Latency from '../components/DashboardCards/Latency';
-import LessView from '../components/DashboardCards/LessView';
-import LocationResponse from '../components/DashboardCards/LocationResponse';
-import MostActive from '../components/DashboardCards/MostActive';
-import PagesActivity from '../components/DashboardCards/PagesActivity';
-import SmallCard from '../components/DashboardCards/SmallCard';
+import Clock from '../components/dashboardCards/Clock';
+import HighView from '../components/dashboardCards/HighView';
+import Latency from '../components/dashboardCards/Latency';
+import LessView from '../components/dashboardCards/LessView';
+import LocationResponse from '../components/dashboardCards/LocationResponse';
+import MostActive from '../components/dashboardCards/MostActive';
+import PagesActivity from '../components/dashboardCards/PagesActivity';
+import SmallCard from '../components/dashboardCards/SmallCard';
 
 type Props = {};
 

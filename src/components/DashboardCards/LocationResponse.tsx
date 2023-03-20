@@ -9,13 +9,11 @@ import { ResponseTime } from '../../Types/Settings';
 import CardHeader from '../CardHeader';
 
 import LocationResponseChart from './Charts/LocationResponseChart';
-import {
-  getLocationResponseChartData,
-  locationResponseChartData,
-} from '../../data/data';
+import { getLocationResponseChartData } from '../../data/data';
 import Select from '../Select';
-import { useTranslation } from 'react-i18next';
-import { TFunction } from 'i18next';
+import useNotNullableTranslation, {
+  NNTFunction,
+} from '../../hooks/useNotNullableTranslation';
 
 type Props = {};
 interface ResponsePopup extends PopupItem {
@@ -25,9 +23,9 @@ interface ResponsePopup extends PopupItem {
 const LocationResponse = (props: Props) => {
   const dispatch = useDispatch();
   const responseTimeChart = useSelector(selectResponseTimeChart);
-  const { t } = useTranslation();
+  const { t } = useNotNullableTranslation();
 
-  const getMenuItems = (t: TFunction): ResponsePopup[] => [
+  const getMenuItems = (t: NNTFunction): ResponsePopup[] => [
     {
       id: ResponseTime.Monthly,
       title: t('Monthly'),

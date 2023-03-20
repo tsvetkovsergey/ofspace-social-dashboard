@@ -1,6 +1,6 @@
 import SmallCardLayout from './SmallCardLayout';
 import { getSmallCardsData } from '../../data/data';
-import { useTranslation } from 'react-i18next';
+import useNotNullableTranslation from '../../hooks/useNotNullableTranslation';
 
 type Props = {
   className?: string;
@@ -8,7 +8,7 @@ type Props = {
 };
 
 const SmallCard = ({ className, cardType }: Props) => {
-  const { t } = useTranslation();
+  const { t } = useNotNullableTranslation();
 
   return (
     <SmallCardLayout

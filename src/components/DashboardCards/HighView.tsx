@@ -20,14 +20,16 @@ import StatCard from '../StatCard';
 import TuneIcon from '@mui/icons-material/Tune';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
-import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
+import useNotNullableTranslation, {
+  NNTFunction,
+} from '../../hooks/useNotNullableTranslation';
 
 interface PagesActivityPopup extends PopupItem {
   id: HighViewType;
 }
 
-const getMenuItems = (t: TFunction): PagesActivityPopup[] => [
+const getMenuItems = (t: NNTFunction): PagesActivityPopup[] => [
   {
     id: HighViewType.Weekly,
     title: t('Weekly'),
@@ -42,7 +44,7 @@ const cardStyle =
   'p-2 [&_h3]:text-white [&_h3]:font-bold [&_h3]:text-lg [&_p]:text-white dark:[&_h3]:text-inherit [&_p]:text-opacity-80 hover:opacity-80 dark:border dark:border-transparent dark:hover:border-slate-100 dark:hover:opacity-100 transition';
 const iconStyle = { width: '1.5rem', height: '1.5rem' };
 const iconContainerStyle = 'bg-white h-10 w-10';
-const getCardData = (chartType: HighViewType, t: TFunction) => [
+const getCardData = (chartType: HighViewType, t: NNTFunction) => [
   {
     id: 'c1',
     icon: <VisibilityOutlinedIcon sx={iconStyle} />,
@@ -65,7 +67,7 @@ const HighView = () => {
   const dispatch = useDispatch();
   const highViewChart = useSelector(selectHighViewChart);
   const gridActiveColumns = useSelector(selectHighViewGrid);
-  const { t } = useTranslation();
+  const { t } = useNotNullableTranslation();
 
   const columns = highViewTableColumns.filter(
     (col) => gridActiveColumns[col.id]

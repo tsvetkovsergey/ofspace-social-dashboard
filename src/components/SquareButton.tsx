@@ -2,7 +2,6 @@ import { useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { DataGridColumn, DataGridColumnID } from '../Types/DataGrid';
 import { FormControlLabel, FormGroup, Switch } from '@mui/material';
-import { useTranslation } from 'react-i18next';
 import { HighViewDataGrid } from '../Types/Settings';
 import { useDispatch } from 'react-redux';
 import { setHighViewGrid } from '../store/settingsSlice';
@@ -11,6 +10,7 @@ import { useAppSelector } from '../store/hooks';
 import { selectMode } from '../store/themeSlice';
 import { ThemeMode } from '../Types/Theme';
 import useClickOutsideListener from '../hooks/useClickOutsideListener';
+import useNotNullableTranslation from '../hooks/useNotNullableTranslation';
 
 type Props = {
   icon: JSX.Element;
@@ -23,7 +23,7 @@ const SquareButton = ({ icon, columns, activeColumns }: Props) => {
   const mode = useAppSelector(selectMode);
   const dispatch = useDispatch();
   const menuRef = useRef<HTMLDivElement | null>(null);
-  const { t } = useTranslation();
+  const { t } = useNotNullableTranslation();
 
   useClickOutsideListener(isOpen, setIsOpen, menuRef);
 

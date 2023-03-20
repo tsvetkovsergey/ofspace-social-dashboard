@@ -1,14 +1,16 @@
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
 
 i18next.use(initReactI18next).init({
   fallbackLng: 'en',
   resources: {
     en: {
       translation: {
+        // Navbar
         'Welcome to Dashboard': 'Welcome to Dashboard',
+        Team: 'Manage Team',
         Search: 'Search',
+        // Dashboard
         'Response time': 'Response time by location',
         'Activity on the pages': 'Activity on the pages',
         Viewers: 'Viewers',
@@ -59,12 +61,17 @@ i18next.use(initReactI18next).init({
         admin: 'admin',
         manager: 'manager',
         user: 'user',
+        // Geography
+        Geography: 'Geo Data',
       },
     },
     ru: {
       translation: {
-        'Welcome to Dashboard': 'Добро пожаловать',
+        // Navbar
+        'Welcome to Dashboard': 'Панель Управления',
         Search: 'Поиск',
+        Team: 'Управление командой',
+        // Dashboard
         'Response time': 'Время отклика',
         'Activity on the pages': 'Активность',
         Viewers: 'Просмотры',
@@ -115,6 +122,8 @@ i18next.use(initReactI18next).init({
         admin: 'админ',
         manager: 'менеджер',
         user: 'пользователь',
+        // Geography
+        Geography: 'Гео Данные',
       },
     },
   },

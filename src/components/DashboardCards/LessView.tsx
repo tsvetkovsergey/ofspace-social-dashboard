@@ -8,13 +8,13 @@ import StorefrontIcon from '@mui/icons-material/Storefront';
 import { useAppSelector } from '../../store/hooks';
 import { selectMode } from '../../store/themeSlice';
 import { ThemeMode } from '../../Types/Theme';
-import { useTranslation } from 'react-i18next';
+import useNotNullableTranslation from '../../hooks/useNotNullableTranslation';
 
 type Props = {};
 
 const LessView = (props: Props) => {
   const isDarkMode = useAppSelector(selectMode) === ThemeMode.Dark;
-  const { t } = useTranslation();
+  const { t } = useNotNullableTranslation();
 
   return (
     <div>

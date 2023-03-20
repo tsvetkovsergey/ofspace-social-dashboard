@@ -16,7 +16,7 @@ const SmallCardLayout = ({ className, data }: Props) => {
     <div
       className={`flex flex-col justify-end rounded-2xl p-3 ${data.bgStyle} ${className}`}
     >
-      <div className="mt-10 block items-center xl:flex">
+      <div className="flex items-start">
         <i className="rounded-full bg-black bg-opacity-10 p-2 text-white">
           {data.icon}
         </i>

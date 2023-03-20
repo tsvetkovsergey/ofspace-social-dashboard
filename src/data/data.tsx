@@ -5,7 +5,6 @@ import {
   ResponseTime,
   Latency as LatencyType,
 } from '../Types/Settings';
-import { TFunction } from 'i18next';
 
 // ICONS
 import DiamondOutlinedIcon from '@mui/icons-material/DiamondOutlined';
@@ -15,6 +14,7 @@ import HistoryIcon from '@mui/icons-material/History';
 import CallMergeIcon from '@mui/icons-material/CallMerge';
 import ModeStandbyIcon from '@mui/icons-material/ModeStandby';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { NNTFunction } from '../hooks/useNotNullableTranslation';
 
 /////////////////
 // SMALL CARDS //
@@ -28,7 +28,7 @@ interface SmallCard {
   icon: JSX.Element;
 }
 
-export const getSmallCardsData = (t: TFunction): SmallCard[] => [
+export const getSmallCardsData = (t: NNTFunction): SmallCard[] => [
   {
     title: t('Accounts reached'),
     count: 48,
@@ -208,7 +208,7 @@ export const highViewCardsData = {
 ///////////////////////
 
 export const getLocationResponseChartData = (
-  t: TFunction,
+  t: NNTFunction,
   resTime: ResponseTime
 ) => {
   const chartData = locationResponseChartData[resTime];
@@ -223,7 +223,7 @@ export const getLocationResponseChartData = (
   return translatedChartData;
 };
 
-export const locationResponseChartData = {
+const locationResponseChartData = {
   [ResponseTime.Daily]: [
     {
       id: 'response',
@@ -283,7 +283,7 @@ const isMonthDataType = (
   return (data as PagesActivityMonthDataType).month !== undefined;
 };
 export const getPagesActivityChartData = (
-  t: TFunction,
+  t: NNTFunction,
   type: PagesActivity
 ) => {
   const data = pagesActivityChartData[type];
@@ -301,7 +301,8 @@ export const getPagesActivityChartData = (
     }
   });
 };
-export const pagesActivityChartData: {
+
+const pagesActivityChartData: {
   [PagesActivity.Monthly]: PagesActivityMonthDataType[];
   [PagesActivity.Daily]: PagesActivityDayDataType[];
 } = {

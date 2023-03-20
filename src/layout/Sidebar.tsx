@@ -4,8 +4,9 @@ import ScheduleOutlinedIcon from '@mui/icons-material/ScheduleOutlined';
 import CampaignOutlinedIcon from '@mui/icons-material/CampaignOutlined';
 import BuildCircleOutlinedIcon from '@mui/icons-material/BuildCircleOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
+import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 import { NavLink } from 'react-router-dom';
-import { PeopleOutlined } from '@mui/icons-material';
 
 const SidebarMenuItem = ({ to, icon }: { to: string; icon: JSX.Element }) => {
   return (
@@ -46,12 +47,12 @@ const menuItems: MenuItem[] = [
     path: '/schedule',
   },
   {
-    icon: <PeopleOutlined />,
+    icon: <PeopleOutlinedIcon />,
     path: '/team',
   },
   {
-    icon: <BuildCircleOutlinedIcon />,
-    path: '/settings',
+    icon: <MapOutlinedIcon />,
+    path: '/geography',
   },
   {
     icon: <SettingsOutlinedIcon />,

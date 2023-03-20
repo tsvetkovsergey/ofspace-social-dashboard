@@ -8,18 +8,16 @@ import { PagesActivity as PagesActivityType } from '../../Types/Settings';
 import CardHeader from '../CardHeader';
 import Select from '../Select';
 import PagesActivityChart from './Charts/PagesActivityChart';
-import {
-  getPagesActivityChartData,
-  pagesActivityChartData,
-} from '../../data/data';
-import { useTranslation } from 'react-i18next';
-import { TFunction } from 'i18next';
+import { getPagesActivityChartData } from '../../data/data';
+import useNotNullableTranslation, {
+  NNTFunction,
+} from '../../hooks/useNotNullableTranslation';
 
 interface PagesActivityPopup extends PopupItem {
   id: PagesActivityType;
 }
 
-const getMenuItems = (t: TFunction): PagesActivityPopup[] => [
+const getMenuItems = (t: NNTFunction): PagesActivityPopup[] => [
   {
     id: PagesActivityType.Monthly,
     title: t('Monthly'),
@@ -33,7 +31,7 @@ const getMenuItems = (t: TFunction): PagesActivityPopup[] => [
 const PagesActivity = () => {
   const dispatch = useDispatch();
   const pagesActivityChart = useSelector(selectPagesActivityChart);
-  const { t } = useTranslation();
+  const { t } = useNotNullableTranslation();
 
   const onChangeHandler = (itemId: string) => {
     dispatch(setPagesActivityChart(itemId as PagesActivityType));

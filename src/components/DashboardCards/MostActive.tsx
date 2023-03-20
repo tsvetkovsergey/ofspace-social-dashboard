@@ -2,7 +2,7 @@ import CardHeader from '../CardHeader';
 import UserImage_1 from '../../assets/active_user_1.png';
 import UserImage_2 from '../../assets/active_user_2.png';
 import StatCard from '../StatCard';
-import { useTranslation } from 'react-i18next';
+import useNotNullableTranslation from '../../hooks/useNotNullableTranslation';
 
 const mostActiveUsers = [
   {
@@ -22,7 +22,7 @@ const mostActiveUsers = [
 ];
 
 const MostActive = () => {
-  const { t } = useTranslation();
+  const { t } = useNotNullableTranslation();
 
   return (
     <div>

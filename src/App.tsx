@@ -18,10 +18,12 @@ function App() {
   const language = useSelector(selectLanguage);
   const dispatch = useDispatch();
 
+  console.log('render');
+
   // Set Initial Theme Settings
   useEffect(() => {
     const systemMode = systemThemeIsDark ? ThemeMode.Dark : ThemeMode.Light;
-    dispatch(setMode(systemMode));
+    if (mode !== systemMode) dispatch(setMode(systemMode));
   }, []);
 
   // Set Initial Language Settings
@@ -29,7 +31,7 @@ function App() {
     const systemLanguage = navigator.language.startsWith('ru')
       ? Language.Russian
       : Language.English;
-    dispatch(setLanguage(systemLanguage));
+    if (language !== systemLanguage) dispatch(setLanguage(systemLanguage));
   }, []);
 
   // Set document bg based on theme

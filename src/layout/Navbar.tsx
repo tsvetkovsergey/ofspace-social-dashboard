@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectMode, toggle } from '../store/themeSlice';
 import { ReactSVG } from 'react-svg';
 import { ThemeMode } from '../Types/Theme';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import IconButton from '../components/IconButton';
 // Icons
 import Clear from '@mui/icons-material/Clear';
@@ -21,7 +21,7 @@ import { selectLanguage, setLanguage } from '../store/settingsSlice';
 import RoundIcon from '../components/RoundIcon';
 import Select from '../components/Select';
 import PopupItem from '../Types/PopupItem';
-import { useTranslation } from 'react-i18next';
+import useNotNullableTranslation from '../hooks/useNotNullableTranslation';
 
 interface LanguagePopup extends PopupItem {
   id: Language;
@@ -36,30 +36,38 @@ const ExpandMoreIconComponent = (): JSX.Element => (
 
 const Navbar = () => {
   const [searchInputText, setSearchInputText] = useState<string>('');
-  const { t } = useTranslation();
+  const { t } = useNotNullableTranslation();
   // const [languagePopupIsOpen, setLanguagePopupIsOpen] =
   //   useState<boolean>(false);
 
   const dispatch = useDispatch();
   const mode = useSelector(selectMode);
   const language = useSelector(selectLanguage);
+  const location = useLocation();
 
-  // TODO: Change next two lines
-  const date = new Date();
-  // const date = new Date('06-12-2022');
+  const navbarTitle = (() => {
+    switch (location.pathname) {
+      case '/team':
+        return t('Team');
+      case '/geography':
+        return t('Geography');
+      default:
+        return t('Welcome to Dashboard');
+    }
+  })();
 
-  const languageItems = [
-    {
-      id: Language.English,
-      title: 'English',
-      isActive: language === Language.English,
-    },
-    {
-      id: Language.Russian,
-      title: 'Русский',
-      isActive: language === Language.Russian,
-    },
-  ];
+  // const languageItems = [
+  //   {
+  //     id: Language.English,
+  //     title: 'English',
+  //     isActive: language === Language.English,
+  //   },
+  //   {
+  //     id: Language.Russian,
+  //     title: 'Русский',
+  //     isActive: language === Language.Russian,
+  //   },
+  // ];
 
   const languageOptions: LanguagePopup[] = [
     {
@@ -98,7 +106,7 @@ const Navbar = () => {
         {/* Heading */}
         <div className="mx-8">
           <h1 className="text-lg font-bold text-typo-800 dark:text-blue-500">
-            {t('Welcome to Dashboard')}
+            {navbarTitle}
           </h1>
           {/* Data */}
           {/* button styles for hover */}
