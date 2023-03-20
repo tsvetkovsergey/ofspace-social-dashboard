@@ -14,13 +14,13 @@ type Props = {
 const SmallCardLayout = ({ className, data }: Props) => {
   return (
     <div
-      className={`flex flex-col justify-end rounded-2xl p-3 ${data.bgStyle} ${className}`}
+      className={`flex flex-col rounded-2xl p-3 2xl:justify-end ${data.bgStyle} ${className}`}
     >
-      <div className="flex items-start">
-        <i className="rounded-full bg-black bg-opacity-10 p-2 text-white">
+      <div className="flex flex-col items-start 2xl:flex-row">
+        <i className="self-end rounded-full bg-black bg-opacity-10 p-2 text-white">
           {data.icon}
         </i>
-        <div className="ml-2 flex-1 text-xs font-extralight text-white dark:text-inherit">
+        <div className="w-full flex-1 text-xs font-extralight text-white dark:text-inherit 2xl:ml-2">
           <p>{data.title}</p>
           <div className="mt-2 flex items-center justify-between">
             <h3 className="text-base font-semibold">{data.count} k</h3>

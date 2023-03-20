@@ -91,6 +91,9 @@ module.exports = {
         sidebar_dark:
           'linear-gradient(100deg, rgba(62,62,62,1) 0%, rgba(45,45,45,1) 100%)',
       },
+      screens: {
+        '2xl': '1400px',
+      },
     },
   },
   plugins: [require('tailwindcss'), require('autoprefixer')],

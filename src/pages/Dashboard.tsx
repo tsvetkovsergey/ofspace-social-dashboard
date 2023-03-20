@@ -27,22 +27,22 @@ const Dashboard = (props: Props) => {
         <Clock />
       </Card>
       <SmallCard
-        className="col-span-3 -mb-1 -mr-1 xl:col-span-2"
+        className="col-span-3 xl:col-span-2 xl:-mb-1 xl:-mr-1"
         cardType={0}
       />
       <SmallCard
-        className="col-span-3 -mb-1 -ml-1 xl:col-span-2"
+        className="col-span-3 xl:col-span-2 xl:-mb-1 xl:-ml-1"
         cardType={1}
       />
       <Card className="col-span-12 row-span-2 xl:col-span-8">
         <HighView />
       </Card>
       <SmallCard
-        className="col-span-3 row-start-2 -mt-1 -mr-1 xl:col-span-2 xl:row-start-3"
+        className="col-span-3 row-start-2 xl:col-span-2 xl:row-start-3 xl:-mt-1 xl:-mr-1"
         cardType={2}
       />
       <SmallCard
-        className="col-span-3 row-start-2 -mt-1 -ml-1 xl:col-span-2 xl:row-start-3"
+        className="col-span-3 row-start-2 xl:col-span-2 xl:row-start-3 xl:-mt-1 xl:-ml-1"
         cardType={3}
       />
       <Card className="col-span-5 row-start-3 xl:col-span-4 xl:row-start-4">
