@@ -27,7 +27,12 @@ const formatMonthNames = (month: string) => {
 
 const LocationResponseChart = ({ data, type }: Props) => {
   const isDarkMode = useAppSelector(selectMode) === ThemeMode.Dark;
-  const isLargeDisplay = useMediaQuery('(min-width:1600px)');
+  // const isLargeDisplay = useMediaQuery(
+  //   '(min-width:1600px) and (max-width:1279px)'
+  // );
+  const isMediumDisplay = useMediaQuery(
+    '(min-width:1280px) and (max-width:1600px)'
+  );
 
   return (
     <ResponsiveLine
@@ -79,7 +84,7 @@ const LocationResponseChart = ({ data, type }: Props) => {
         tickRotation: 0,
         format: (v) =>
           // Format month names for small desktop displays
-          type === ResponseTime.Monthly && !isLargeDisplay
+          type === ResponseTime.Monthly && isMediumDisplay
             ? formatMonthNames(v)
             : v,
       }}
