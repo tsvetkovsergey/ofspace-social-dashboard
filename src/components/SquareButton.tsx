@@ -5,7 +5,10 @@ import { FormControlLabel, FormGroup, Switch } from '@mui/material';
 import { HighViewDataGrid } from '../Types/Settings';
 import { useDispatch } from 'react-redux';
 import { setHighViewGrid } from '../store/settingsSlice';
-import { popupScaleFadeIn } from '../data/animationSettings';
+import {
+  popupScaleFadeIn,
+  scaleOnTapSmallButtons,
+} from '../data/animationSettings';
 import { useAppSelector } from '../store/hooks';
 import { selectMode } from '../store/themeSlice';
 import { ThemeMode } from '../Types/Theme';
@@ -90,12 +93,13 @@ const SquareButton = ({ icon, columns, activeColumns }: Props) => {
 
   return (
     <div ref={menuRef} className="relative">
-      <button
+      <motion.button
         onClick={() => setIsOpen((currentState) => !currentState)}
         className="h-8 rounded-lg bg-primary-100 px-2 text-primary-700 transition hover:shadow-lg dark:bg-slate-800 dark:text-blue-500 dark:hover:bg-slate-700 dark:hover:shadow-none [&>svg]:h-6"
+        {...scaleOnTapSmallButtons}
       >
         {icon}
-      </button>
+      </motion.button>
       <AnimatePresence>{isOpen && popupMenu}</AnimatePresence>
     </div>
   );

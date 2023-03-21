@@ -87,7 +87,7 @@ const Navbar = () => {
   // )?.title;
 
   return (
-    <div className="sticky top-0 left-0 z-20 flex h-24 flex-[0_0_6rem] items-center justify-between bg-white shadow-lg dark:bg-slate-900 dark:bg-opacity-60 dark:backdrop-blur-md">
+    <div className="sticky top-0 left-0 z-20 flex h-24 flex-[0_0_6rem] items-center justify-between bg-white bg-opacity-80 shadow-lg backdrop-blur-md dark:bg-slate-900 dark:bg-opacity-60">
       {/* LEFT SIDE */}
 
       <div className="flex items-center">
@@ -134,7 +134,7 @@ const Navbar = () => {
       {/* RIGHT SIDE */}
       <div className="flex items-center">
         {/* Search Input */}
-        <div className="group relative mr-2 flex items-center rounded-lg bg-primary-200 transition hover:shadow-lg dark:bg-slate-600 dark:bg-opacity-20 dark:hover:bg-blue-500 dark:[&:hover_svg]:text-slate-50">
+        <div className="group relative mr-2 flex items-center rounded-lg bg-primary-200 transition hover:shadow-lg dark:bg-slate-600 dark:bg-opacity-20 dark:hover:bg-blue-500 dark:[&:hover_svg]:text-slate-50 dark:[&_svg:hover]:text-blue-200">
           <input
             className={`${
               searchInputText ? 'w-36' : 'w-[11rem]'
@@ -148,7 +148,7 @@ const Navbar = () => {
           <button disabled={!searchInputText}>
             {searchInputText && (
               <Clear
-                className="text-typo-400 dark:text-slate-300"
+                className="text-typo-400 hover:text-gray-400 dark:text-slate-300"
                 sx={{
                   height: '1.4rem',
                   width: '1.4rem',
@@ -164,7 +164,7 @@ const Navbar = () => {
           )}
           <button>
             <Search
-              className="text-typo-400 dark:text-slate-300"
+              className="text-typo-400 hover:text-gray-400 dark:text-slate-300"
               sx={{
                 height: '1.4rem',
                 width: '1.4rem',

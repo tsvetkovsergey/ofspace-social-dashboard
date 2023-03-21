@@ -7,18 +7,31 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 import { NavLink } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { scaleOnTapSmallButtons } from '../data/animationSettings';
 
 const SidebarMenuItem = ({ to, icon }: { to: string; icon: JSX.Element }) => {
   return (
     <NavLink
       to={to}
       className={({ isActive }) =>
-        `mx-auto flex h-8 w-8 items-center justify-center rounded-full transition-all ${
+        ` ${
           isActive
-            ? 'bg-primary-710 text-primary-50 dark:bg-blue-500 dark:hover:bg-blue-600'
-            : 'bg-transparent text-secondary-400 hover:bg-primary-200 dark:text-blue-100 dark:hover:bg-slate-500'
+            ? 'dark:[&_button:hover]:bg-blue-600 [&_button]:bg-primary-710 [&_button]:text-primary-50 dark:[&_button]:bg-blue-500'
+            : '[&_button:hover]:bg-primary-200 dark:[&_button:hover]:bg-slate-500 [&_button]:bg-transparent [&_button]:text-secondary-400 dark:[&_button]:text-blue-100'
         }`
       }
+
+      // <NavLink
+      //   to={to}
+      //   className={({ isActive }) =>
+      //     `mx-auto flex h-10 w-10 items-center justify-center rounded-full transition-all ${
+      //       isActive
+      //         ? 'bg-primary-710 text-primary-50 dark:bg-blue-500 dark:hover:bg-blue-600'
+      //         : 'bg-transparent text-secondary-400 hover:bg-primary-200 dark:text-blue-100 dark:hover:bg-slate-500'
+      //     }`
+      //   }
+
       // className={({ isActive }) =>
       //   ` transition-all [&>svg]:transition-all ${
       //     isActive
@@ -27,7 +40,12 @@ const SidebarMenuItem = ({ to, icon }: { to: string; icon: JSX.Element }) => {
       //   }`
       // }
     >
-      {icon}
+      <motion.button
+        {...scaleOnTapSmallButtons}
+        className="mx-auto flex h-10 w-10 items-center justify-center rounded-full transition-all"
+      >
+        {icon}
+      </motion.button>
     </NavLink>
   );
 };

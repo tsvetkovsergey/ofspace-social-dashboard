@@ -24,22 +24,22 @@ const LessView = (props: Props) => {
       <div className="mt-5 flex flex-col gap-3">
         <IndicatorBar
           text="diamond/dash.all"
-          mainColor="bg-additional-100 dark:bg-teal-500"
-          textColor="text-additional-100 dark:text-teal-500"
+          mainColor="bg-primary-710 dark:bg-teal-500"
+          textColor="text-primary-710 dark:text-teal-500"
           progress={78}
           icon={<DiamondOutlinedIcon />}
           isDarkMode={isDarkMode}
         />
         <IndicatorBar
-          text="diamond/dash.all"
+          text="api/dash.all_get"
           progress={60}
-          mainColor="bg-primary-710 dark:bg-violet-500"
-          textColor="text-primary-710 dark:text-violet-500"
+          mainColor="bg-additional-100 dark:bg-violet-500"
+          textColor="text-additional-100 dark:text-violet-500"
           icon={<AccountBalanceOutlinedIcon />}
           isDarkMode={isDarkMode}
         />
         <IndicatorBar
-          text="diamond/dash.all"
+          text="variety_xyz/dash.all"
           progress={56}
           mainColor="bg-additional-200 dark:bg-pink-500"
           textColor="text-additional-200 dark:text-pink-500"
