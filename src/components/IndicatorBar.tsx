@@ -17,22 +17,6 @@ const IndicatorBar = ({
   mainColor = 'bg-primary-710',
   textColor = 'text-primary-710',
 }: Props) => {
-  // Backup
-  // return (
-  //   <div className="flex h-[3.25rem] w-full items-center overflow-hidden rounded-xl border border-primary-100">
-  //     <div className={`mr-3 h-full w-1 ${mainColor}`} />
-  //     <p className="text-sm text-typo-600">{text}</p>
-  //     <h3 className={`font-medium ${textColor}`}>{progress}%</h3>
-  //   </div>
-  // );
-  const indicatorRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (indicatorRef.current) {
-      indicatorRef.current.style.width = `${progress}%`;
-    }
-  }, [progress]);
-
   return (
     <div
       className={`group relative flex h-[3.25rem] w-full items-center gap-3 overflow-hidden rounded-xl border border-primary-100 bg-opacity-0 px-3 transition hover:bg-opacity-10 dark:border-transparent dark:hover:border-slate-500 ${
@@ -53,7 +37,7 @@ const IndicatorBar = ({
           className={`${mainColor} absolute h-3 w-full rounded opacity-30`}
         />
         <div
-          ref={indicatorRef}
+          style={{ width: `${progress}%` }}
           className={`${mainColor} absolute h-3 rounded`}
         />
       </div>

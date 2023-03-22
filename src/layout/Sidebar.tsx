@@ -6,6 +6,7 @@ import BuildCircleOutlinedIcon from '@mui/icons-material/BuildCircleOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { scaleOnTapSmallButtons } from '../data/animationSettings';
@@ -63,6 +64,10 @@ const menuItems: MenuItem[] = [
   {
     icon: <ScheduleOutlinedIcon />,
     path: '/schedule',
+  },
+  {
+    icon: <FormatListBulletedIcon />,
+    path: '/list',
   },
   {
     icon: <PeopleOutlinedIcon />,

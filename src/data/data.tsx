@@ -1,4 +1,5 @@
 import { DataGridColumn, DataGridColumnID } from '../Types/DataGrid';
+import { NNTFunction } from '../hooks/useNotNullableTranslation';
 import {
   HighView,
   PagesActivity,
@@ -14,7 +15,8 @@ import HistoryIcon from '@mui/icons-material/History';
 import CallMergeIcon from '@mui/icons-material/CallMerge';
 import ModeStandbyIcon from '@mui/icons-material/ModeStandby';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { NNTFunction } from '../hooks/useNotNullableTranslation';
+import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
+import StorefrontIcon from '@mui/icons-material/Storefront';
 
 /////////////////
 // SMALL CARDS //
@@ -531,5 +533,42 @@ export const mockDataTeam = [
     age: 65,
     phone: '(444)555-6239',
     access: 'admin',
+  },
+];
+
+///////////////
+// LESS VIEW //
+///////////////
+
+export const lessViewData = [
+  {
+    id: 'i1',
+    icon: <DiamondOutlinedIcon />,
+    title: 'diamond/dash.all',
+    progress: 78,
+    mainColor: 'bg-primary-710 dark:bg-teal-500',
+    textColor: 'text-primary-710 dark:text-teal-500',
+    content:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus fugiat a, deserunt ut error nobis perspiciatis adipisci delectus corrupti aliquid ea dolorum deleniti facilis atque consequuntur magni neque nihil culpa!',
+  },
+  {
+    id: 'i2',
+    icon: <AccountBalanceOutlinedIcon />,
+    title: 'api/dash.all_get',
+    progress: 60,
+    mainColor: 'bg-additional-100 dark:bg-violet-500',
+    textColor: 'text-additional-100 dark:text-violet-500',
+    content:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, at eum dolores saepe tenetur cum itaque debitis molestias illo neque quidem quae voluptates aut obcaecati deserunt impedit omnis ducimus perferendis ipsam quia autem esse sequi unde! Expedita provident maiores nostrum, blanditiis reiciendis ad vero temporibus perferendis culpa magnam?',
+  },
+  {
+    id: 'i3',
+    icon: <StorefrontIcon />,
+    title: 'variety_xyz/dash.all',
+    progress: 56,
+    mainColor: 'bg-additional-200 dark:bg-pink-500',
+    textColor: 'text-additional-200 dark:text-pink-500',
+    content:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos exercitationem consequatur sequi qui et quidem fugiat, ad dolorem illum omnis architecto aut debitis ipsa doloribus distinctio ut cupiditate eveniet labore! Voluptate reiciendis quisquam magnam sit, quis distinctio similique.',
   },
 ];
