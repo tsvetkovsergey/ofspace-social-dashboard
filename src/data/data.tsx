@@ -542,32 +542,38 @@ export const mockDataTeam = [
 
 export const lessViewData = [
   {
-    id: 'i1',
+    id: 'diamond',
     icon: <DiamondOutlinedIcon />,
     title: 'diamond/dash.all',
     progress: 78,
     mainColor: 'bg-primary-710 dark:bg-teal-500',
     textColor: 'text-primary-710 dark:text-teal-500',
+    hexLightColor: '#3247cf',
+    hexDarkColor: '#14b8a6',
     content:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus fugiat a, deserunt ut error nobis perspiciatis adipisci delectus corrupti aliquid ea dolorum deleniti facilis atque consequuntur magni neque nihil culpa!',
   },
   {
-    id: 'i2',
+    id: 'api',
     icon: <AccountBalanceOutlinedIcon />,
     title: 'api/dash.all_get',
     progress: 60,
     mainColor: 'bg-additional-100 dark:bg-violet-500',
     textColor: 'text-additional-100 dark:text-violet-500',
+    hexLightColor: '#eeb07a',
+    hexDarkColor: '#8b5cf6',
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, at eum dolores saepe tenetur cum itaque debitis molestias illo neque quidem quae voluptates aut obcaecati deserunt impedit omnis ducimus perferendis ipsam quia autem esse sequi unde! Expedita provident maiores nostrum, blanditiis reiciendis ad vero temporibus perferendis culpa magnam?',
   },
   {
-    id: 'i3',
+    id: 'variety',
     icon: <StorefrontIcon />,
     title: 'variety_xyz/dash.all',
     progress: 56,
     mainColor: 'bg-additional-200 dark:bg-pink-500',
     textColor: 'text-additional-200 dark:text-pink-500',
+    hexLightColor: '#00d0ff',
+    hexDarkColor: '#ec4899',
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos exercitationem consequatur sequi qui et quidem fugiat, ad dolorem illum omnis architecto aut debitis ipsa doloribus distinctio ut cupiditate eveniet labore! Voluptate reiciendis quisquam magnam sit, quis distinctio similique.',
   },

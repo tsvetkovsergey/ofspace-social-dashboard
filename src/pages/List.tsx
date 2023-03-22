@@ -8,9 +8,14 @@ import {
 } from '@mui/material';
 
 import { lessViewData } from '../data/data';
+import PieChart from '../components/PieChart';
+import { useAppSelector } from '../store/hooks';
+import { selectMode } from '../store/themeSlice';
+import { ThemeMode } from '../Types/Theme';
 
 const List = () => {
   const [expanded, setExpanded] = useState<string | false>(false);
+  const isDarkMode = useAppSelector(selectMode) === ThemeMode.Dark;
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -20,7 +25,16 @@ const List = () => {
   return (
     <div>
       {lessViewData.map(
-        ({ id, icon, title, progress, mainColor, textColor, content }) => (
+        ({
+          id,
+          icon,
+          title,
+          progress,
+          mainColor,
+          hexLightColor,
+          hexDarkColor,
+          content,
+        }) => (
           <Accordion
             key={id}
             expanded={expanded === id}
@@ -43,8 +57,34 @@ const List = () => {
               <Typography>{title}</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <div>
-                <Typography>{content}</Typography>
+              <div className="flex gap-10">
+                <div className="h-60 w-1/3">
+                  <PieChart
+                    data={[
+                      {
+                        id: '',
+                        value: 100 - progress,
+                        label: '',
+                        color: 'transparent',
+                      },
+                      {
+                        id: id,
+                        value: progress,
+                        label: id,
+                        color: isDarkMode ? hexDarkColor : hexLightColor,
+                      },
+                    ]}
+                  />
+                </div>
+                <div className="mx-auto max-w-lg flex-1">
+                  <Typography
+                    sx={{
+                      columns: '3 auto',
+                    }}
+                  >
+                    {content}
+                  </Typography>
+                </div>
               </div>
             </AccordionDetails>
           </Accordion>

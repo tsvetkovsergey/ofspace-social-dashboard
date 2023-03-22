@@ -8,7 +8,7 @@ import PopupItem from '../../Types/PopupItem';
 import { ResponseTime } from '../../Types/Settings';
 import CardHeader from '../CardHeader';
 
-import LocationResponseChart from './Charts/LocationResponseChart';
+import LocationResponseChart from './dashboardCharts/LocationResponseChart';
 import { getLocationResponseChartData } from '../../data/data';
 import Select from '../Select';
 import useNotNullableTranslation, {

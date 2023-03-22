@@ -1,12 +1,20 @@
-import { ResponsivePie } from '@nivo/pie';
+import { Theme } from '@nivo/core';
+import { ResponsivePie, DatumId } from '@nivo/pie';
 
-type Props = {};
+type Props = {
+  data: Array<{ id: DatumId; label: DatumId; value: number; color: string }>;
+};
 
-const PieChart = (props: Props) => {
+const themeObject: Theme = {
+  fontSize: 16,
+};
+
+const PieChart = ({ data }: Props) => {
   return (
     <ResponsivePie
       data={data}
-      margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+      theme={themeObject}
+      margin={{ top: 20, right: 0, bottom: 20, left: 60 }}
       innerRadius={0.5}
       padAngle={0.7}
       cornerRadius={3}
@@ -16,7 +24,8 @@ const PieChart = (props: Props) => {
         from: 'color',
         modifiers: [['darker', 0.2]],
       }}
-      enableArcLinkLabels={false}
+      colors={(data) => data.data.color}
+      enableArcLinkLabels={true}
       arcLinkLabelsSkipAngle={10}
       arcLinkLabelsTextColor="#333333"
       arcLinkLabelsThickness={2}
@@ -26,6 +35,7 @@ const PieChart = (props: Props) => {
         from: 'color',
         modifiers: [['darker', 2]],
       }}
+      tooltip={() => <></>}
       legends={[]}
     />
   );

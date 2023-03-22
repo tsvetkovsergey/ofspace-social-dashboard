@@ -7,7 +7,7 @@ import PopupItem from '../../Types/PopupItem';
 import { PagesActivity as PagesActivityType } from '../../Types/Settings';
 import CardHeader from '../CardHeader';
 import Select from '../Select';
-import PagesActivityChart from './Charts/PagesActivityChart';
+import PagesActivityChart from './dashboardCharts/PagesActivityChart';
 import { getPagesActivityChartData } from '../../data/data';
 import useNotNullableTranslation, {
   NNTFunction,
