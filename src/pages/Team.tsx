@@ -7,6 +7,7 @@ import SecurityOutlinedIcon from '@mui/icons-material/SecurityOutlined';
 import useNotNullableTranslation from '../hooks/useNotNullableTranslation';
 
 const dataGridStyles = [
+  'shadow-md dark:shadow-cyan-900',
   // Column Headers
   '[&_.MuiDataGrid-columnHeaders]:bg-gray-200 [&_.MuiDataGrid-columnHeaders]:text-gray-800',
   'dark:[&_.MuiDataGrid-columnHeaders]:bg-slate-800 dark:[&_.MuiDataGrid-columnHeaders]:text-slate-100',

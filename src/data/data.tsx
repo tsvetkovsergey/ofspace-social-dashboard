@@ -551,7 +551,7 @@ export const lessViewData = [
     hexLightColor: '#3247cf',
     hexDarkColor: '#14b8a6',
     content:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus fugiat a, deserunt ut error nobis perspiciatis adipisci delectus corrupti aliquid ea dolorum deleniti facilis atque consequuntur magni neque nihil culpa!',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste necessitatibus doloribus nam asperiores. Atque facilis veritatis labore optio laudantium a vitae, mollitia, cumque doloribus similique illo tenetur laboriosam. Illum officiis unde expedita ut error tempore rerum cum ipsum, rem repellendus eius atque quas placeat, nesciunt voluptatibus.',
   },
   {
     id: 'api',

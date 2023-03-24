@@ -89,7 +89,7 @@ const Sidebar = (props: Props) => {
   return (
     <aside className="fixed h-full w-24 overflow-y-auto bg-white dark:bg-slate-900 dark:bg-opacity-60 dark:backdrop-blur-md">
       {/* First block of icons */}
-      <nav className="mx-auto mt-8 w-fit rounded-full bg-primary-50 p-3 dark:bg-slate-600 dark:bg-opacity-10">
+      <nav className="mx-auto mt-8 mb-32 w-fit rounded-full bg-primary-50 p-3 dark:bg-slate-600 dark:bg-opacity-10">
         <ul className="flex flex-col items-center gap-5">
           {menuItems.map((item, index) => (
             <li key={index}>

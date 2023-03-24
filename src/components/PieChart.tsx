@@ -1,5 +1,8 @@
 import { Theme } from '@nivo/core';
 import { ResponsivePie, DatumId } from '@nivo/pie';
+import { useAppSelector } from '../store/hooks';
+import { selectMode } from '../store/themeSlice';
+import { ThemeMode } from '../Types/Theme';
 
 type Props = {
   data: Array<{ id: DatumId; label: DatumId; value: number; color: string }>;
@@ -10,6 +13,8 @@ const themeObject: Theme = {
 };
 
 const PieChart = ({ data }: Props) => {
+  const isDarkMode = useAppSelector(selectMode) === ThemeMode.Dark;
+
   return (
     <ResponsivePie
       data={data}
@@ -27,13 +32,13 @@ const PieChart = ({ data }: Props) => {
       colors={(data) => data.data.color}
       enableArcLinkLabels={true}
       arcLinkLabelsSkipAngle={10}
-      arcLinkLabelsTextColor="#333333"
+      arcLinkLabelsTextColor={isDarkMode ? '#f1f5f9' : '#717075'}
       arcLinkLabelsThickness={2}
       arcLinkLabelsColor={{ from: 'color' }}
       arcLabelsSkipAngle={10}
       arcLabelsTextColor={{
         from: 'color',
-        modifiers: [['darker', 2]],
+        modifiers: [['brighter', 3]],
       }}
       tooltip={() => <></>}
       legends={[]}

@@ -23,7 +23,7 @@ const List = () => {
     };
 
   return (
-    <div>
+    <div className="[&_.MuiAccordion-root]:text-typo-600 [&_.MuiAccordion-root]:shadow-md dark:[&_.MuiAccordion-root]:border dark:[&_.MuiAccordion-root]:border-cyan-900 dark:[&_.MuiAccordion-root]:text-slate-100 dark:[&_.MuiAccordion-root]:shadow-cyan-900">
       {lessViewData.map(
         ({
           id,
@@ -39,6 +39,7 @@ const List = () => {
             key={id}
             expanded={expanded === id}
             onChange={handleChange(id)}
+            className="dark:bg-slate-900"
           >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -57,8 +58,8 @@ const List = () => {
               <Typography>{title}</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <div className="flex gap-10">
-                <div className="h-60 w-1/3">
+              <div className="flex">
+                <div className="h-60 w-1/3 min-w-[22rem]">
                   <PieChart
                     data={[
                       {
@@ -76,10 +77,11 @@ const List = () => {
                     ]}
                   />
                 </div>
-                <div className="mx-auto max-w-lg flex-1">
+                <div className="mx-auto max-w-2xl flex-1">
                   <Typography
                     sx={{
                       columns: '3 auto',
+                      columnGap: '3rem',
                     }}
                   >
                     {content}
