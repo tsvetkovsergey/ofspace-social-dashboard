@@ -39,7 +39,6 @@ const LocationResponseChart = ({ data, type }: Props) => {
   const isMediumDisplay = useMediaQuery(
     '(min-width:1280px) and (max-width:1600px), (max-width: 1000px)'
   );
-  console.log('1280 ~ 1600: ' + isMediumDisplay);
 
   return (
     <ResponsiveLine

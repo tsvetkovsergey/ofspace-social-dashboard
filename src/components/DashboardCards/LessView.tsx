@@ -27,6 +27,7 @@ const LessView = () => {
           .map(({ id, icon, title, progress, mainColor, textColor }) => (
             <IndicatorBar
               key={id}
+              id={id}
               text={title}
               mainColor={mainColor}
               textColor={textColor}

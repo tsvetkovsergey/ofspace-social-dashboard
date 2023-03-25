@@ -12,9 +12,13 @@ import PieChart from '../components/PieChart';
 import { useAppSelector } from '../store/hooks';
 import { selectMode } from '../store/themeSlice';
 import { ThemeMode } from '../Types/Theme';
+import { useSearchParams } from 'react-router-dom';
 
 const List = () => {
-  const [expanded, setExpanded] = useState<string | false>(false);
+  const [searchParams] = useSearchParams();
+  const [expanded, setExpanded] = useState<string | false>(
+    searchParams.get('id') || false
+  );
   const isDarkMode = useAppSelector(selectMode) === ThemeMode.Dark;
 
   const handleChange =
@@ -23,7 +27,7 @@ const List = () => {
     };
 
   return (
-    <div className="[&_.MuiAccordion-root]:text-typo-600 [&_.MuiAccordion-root]:shadow-md dark:[&_.MuiAccordion-root]:border dark:[&_.MuiAccordion-root]:border-cyan-900 dark:[&_.MuiAccordion-root]:text-slate-100 dark:[&_.MuiAccordion-root]:shadow-cyan-900">
+    <div className="[&_.MuiAccordion-root]:text-typo-600 [&_.MuiAccordion-root]:shadow-md dark:[&_.MuiAccordion-root]:border dark:[&_.MuiAccordion-root]:border-cyan-900 dark:[&_.MuiAccordion-root]:text-slate-100 dark:[&_.MuiAccordion-root]:shadow-sm dark:[&_.MuiAccordion-root]:shadow-cyan-900 dark:[&_.MuiSvgIcon-root]:fill-slate-100">
       {lessViewData.map(
         ({
           id,

@@ -18,8 +18,6 @@ function App() {
   const language = useSelector(selectLanguage);
   const dispatch = useDispatch();
 
-  console.log('render');
-
   // Set Initial Theme Settings
   useEffect(() => {
     const systemMode = systemThemeIsDark ? ThemeMode.Dark : ThemeMode.Light;
