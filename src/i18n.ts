@@ -52,6 +52,8 @@ i18next.use(initReactI18next).init({
         Fri: 'Fri',
         Sat: 'Sat',
         Sun: 'Sun',
+        // Calendar
+        Events: 'Events',
         // Team Page
         Name: 'Name',
         Age: 'Age',
@@ -113,6 +115,8 @@ i18next.use(initReactI18next).init({
         Fri: 'Пт',
         Sat: 'Сб',
         Sun: 'Вс',
+        // Calendar
+        Events: 'События',
         // Team Page
         Name: 'Имя',
         Age: 'Возраст',
