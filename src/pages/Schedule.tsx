@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, useState, useRef } from 'react';
 import {
   DateSelectArg,
   EventClickArg,
@@ -16,49 +16,94 @@ import { useSelector } from 'react-redux';
 import { selectLanguage } from '../store/settingsSlice';
 import useNotNullableTranslation from '../hooks/useNotNullableTranslation';
 import Modal from '../components/Modal';
+import ModalTitle from '../components/ModalTitle';
+import ModalContent from '../components/ModalContent';
+import ModalText from '../components/ModalText';
+import ModalActions from '../components/ModalActions';
+import TextButton from '../components/TextButton';
+
+const INITIAL_MODAL = {
+  addModalIsOpen: false,
+  removeModalIsOpen: false,
+  title: '',
+  text: '',
+};
 
 const Schedule = () => {
   const [currentEvents, setCurrentEvents] = useState<EventApi[]>([]);
-  const [addModalIsOpen, setAddModalIsOpen] = useState(false);
-  const [removeModalIsOpen, setRemoveModalIsOpen] = useState(false);
+  const [modal, setModal] = useState(INITIAL_MODAL);
+  const [addEventInput, setAddEventInput] = useState('');
+  const dateSelectRef = useRef<DateSelectArg | null>(null);
+  const eventSelectRef = useRef<EventClickArg | null>(null);
+
   const language = useSelector(selectLanguage);
   const { t } = useNotNullableTranslation();
 
   const handleCloseWindow = () => {
-    setAddModalIsOpen(false);
-    setRemoveModalIsOpen(false);
+    setModal(INITIAL_MODAL);
+    setAddEventInput('');
   };
 
-  const handleDateClick = (selected: DateSelectArg) => {
-    setAddModalIsOpen(true);
-    const title = prompt('Please enter a new title for your event');
-    console.log(selected);
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setAddEventInput(e.target.value);
+  };
+
+  const handleAddEvent = () => {
+    if (!dateSelectRef.current) return;
+
+    const selected = dateSelectRef.current;
     const calendarApi = selected.view.calendar;
     calendarApi.unselect();
 
-    console.log(selected);
-    console.log(Date.now());
-
-    if (title) {
+    // If entered event name is valid
+    // add new event to calendar
+    if (addEventInput.trim()) {
       calendarApi.addEvent({
-        id: `${Date.now()}-${selected.startStr}-${title}`,
-        title,
+        id: `${Date.now()}-${selected.startStr}-${addEventInput}`,
+        title: addEventInput,
         start: selected.startStr,
         end: selected.endStr,
         allDay: selected.allDay,
       });
     }
+
+    // Close Modal Window and reset
+    // input value and dateSelectRef
+    handleCloseWindow();
+    setAddEventInput('');
+    dateSelectRef.current = null;
+  };
+
+  const handleRemoveEvent = () => {
+    if (!eventSelectRef.current) return;
+
+    const selected = eventSelectRef.current;
+    selected.event.remove();
+
+    // Close Modal Window and reset
+    // eventSelectRef
+    handleCloseWindow();
+    eventSelectRef.current = null;
+  };
+
+  const handleDateClick = (selected: DateSelectArg) => {
+    dateSelectRef.current = selected;
+    setModal({
+      addModalIsOpen: true,
+      removeModalIsOpen: false,
+      title: 'Add New Event',
+      text: 'Please enter a new title for your event:',
+    });
   };
 
   const handleEventClick = (selected: EventClickArg) => {
-    console.log(selected.event);
-    if (
-      window.confirm(
-        `Are you sure you want to delete the event '${selected.event.title}'?`
-      )
-    ) {
-      selected.event.remove();
-    }
+    eventSelectRef.current = selected;
+    setModal({
+      addModalIsOpen: false,
+      removeModalIsOpen: true,
+      title: 'Remove Event',
+      text: `Are you sure you want to delete the event '${selected.event.title}'?`,
+    });
   };
 
   return (
@@ -120,15 +165,42 @@ const Schedule = () => {
           </div>
         </div>
       </Card>
+      {/* 2 modal windows in 1 */}
+      {(modal.addModalIsOpen || modal.removeModalIsOpen) && (
+        <Modal isOpen={true} onClose={handleCloseWindow}>
+          <ModalTitle>{modal.title}</ModalTitle>
+          <ModalContent>
+            <ModalText>{modal.text}</ModalText>
+            {modal.addModalIsOpen && (
+              <input
+                value={addEventInput}
+                onChange={handleInputChange}
+                autoFocus
+                className="mt-5 w-full rounded-md border border-gray-300 py-1 px-2 text-gray-900 outline-none transition hover:border-gray-400 hover:shadow-lg focus:border-blue-400 focus:shadow-lg dark:border-slate-500 dark:bg-slate-800 dark:text-slate-300 dark:hover:border-slate-300 dark:focus:border-slate-300"
+              />
+            )}
+          </ModalContent>
+          <ModalActions className="[&>button]:text-xs [&>button]:font-medium [&>button]:text-gray-500 dark:[&>button]:text-slate-400">
+            <TextButton title={'CLOSE'} onClick={handleCloseWindow} />
+            {modal.addModalIsOpen && (
+              <TextButton title={'ADD'} onClick={handleAddEvent} />
+            )}
+            {modal.removeModalIsOpen && (
+              <TextButton title={'DELETE'} onClick={handleRemoveEvent} />
+            )}
+          </ModalActions>
+        </Modal>
+      )}
       {/* 2 Modals in 1 */}
-      {(addModalIsOpen || removeModalIsOpen) && (
+      {/* {(modal.addModalIsOpen || modal.removeModalIsOpen) && (
         <Modal
           isOpen={true}
           onClose={handleCloseWindow}
-          title={addModalIsOpen ? 'Add New Event' : 'Remove Selected Event'}
-          text="Please enter a new title for your event:"
+          title={modal.title}
+          text={modal.text}
+          options={modal.options}
         />
-      )}
+      )} */}
     </>
   );
 };

@@ -9,9 +9,22 @@ import { ThemeMode } from '../Types/Theme';
 type Props = {
   isOpen: boolean;
   onClose: () => void;
+  title?: string;
+  text?: string;
+  options?: {
+    input?: boolean;
+    add?: boolean;
+  };
 };
 
-const Modal = ({ isOpen, onClose, children }: PropsWithChildren<Props>) => {
+const Modal = ({
+  isOpen,
+  onClose,
+  title,
+  text,
+  options,
+  children,
+}: PropsWithChildren<Props>) => {
   if (!isOpen) return null;
 
   const mode = useAppSelector(selectMode);
@@ -33,6 +46,23 @@ const Modal = ({ isOpen, onClose, children }: PropsWithChildren<Props>) => {
         {/* Modal Window */}
         <Card className="relative m-8 max-h-[calc(100%-2rem)] max-w-[35rem] overflow-auto">
           {children}
+          <div>
+            <h3 className="pb-4 text-lg font-semibold">{title}</h3>
+            <p>{text}</p>
+            {options?.input && (
+              <input
+                type="text"
+                className="my-4 w-full rounded-md border border-gray-300 py-1 px-2 text-gray-900 transition hover:border-gray-500"
+              />
+            )}
+            <div className="mt-8 text-right">
+              <TextButton
+                onClick={onClose}
+                title="Close"
+                className="text-base"
+              />
+            </div>
+          </div>
         </Card>
       </div>
     </div>

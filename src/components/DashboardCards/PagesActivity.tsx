@@ -48,7 +48,7 @@ const PagesActivity = () => {
           />
         }
       </CardHeader>
-      <div className="flex gap-6 text-sm text-typo-600 dark:text-inherit">
+      <div className="flex gap-6 text-sm text-typo-600 dark:text-slate-300">
         <p className="flex items-center before:mr-2 before:h-3 before:w-3 before:rounded-full before:bg-primary-700 dark:before:bg-fuchsia-700">
           {t('Viewers')}
         </p>

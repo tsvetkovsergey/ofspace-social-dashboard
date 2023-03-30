@@ -1,4 +1,10 @@
-import { useState } from 'react';
+import {
+  LegacyRef,
+  MutableRefObject,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectMode, toggle } from '../store/themeSlice';
 import { ReactSVG } from 'react-svg';
@@ -44,6 +50,21 @@ const Navbar = () => {
   const mode = useSelector(selectMode);
   const language = useSelector(selectLanguage);
   const location = useLocation();
+
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  // Set input autofill text color
+  useEffect(() => {
+    if (!inputRef.current) return;
+
+    if (mode === ThemeMode.Dark) {
+      inputRef.current.style.webkitTextFillColor = 'white';
+    }
+
+    if (mode === ThemeMode.Light) {
+      inputRef.current.style.webkitTextFillColor = '#717075';
+    }
+  }, [mode]);
 
   const navbarTitle = (() => {
     switch (location.pathname) {
@@ -134,11 +155,12 @@ const Navbar = () => {
       {/* RIGHT SIDE */}
       <div className="flex items-center">
         {/* Search Input */}
-        <div className="group relative mr-2 flex items-center rounded-lg bg-primary-200 transition hover:shadow-lg dark:bg-slate-600 dark:bg-opacity-20 dark:hover:bg-blue-500 dark:[&:hover_svg]:text-slate-50 dark:[&_svg:hover]:text-blue-200">
+        <div className="group relative mr-2 flex items-center rounded-lg bg-primary-200 transition focus-within:shadow-lg hover:shadow-lg dark:bg-slate-600 dark:bg-opacity-20 dark:focus-within:bg-blue-500 dark:hover:bg-blue-500 dark:[&:hover_svg]:text-slate-50 dark:[&_svg:hover]:text-blue-200 dark:focus-within:[&_input]:placeholder:text-white dark:[&:focus-within_svg]:text-slate-50 dark:[&:focus-within_svg:hover]:text-blue-200">
           <input
+            ref={inputRef}
             className={`${
               searchInputText ? 'w-36' : 'w-[11rem]'
-            } bg-transparent py-2 pl-4 text-sm text-typo-600 placeholder:text-typo-400 placeholder:transition autofill:rounded-lg autofill:shadow-[inset_0_0_0_100px_#eff2fa] autofill:transition focus:outline-none dark:text-white dark:placeholder:text-slate-600 dark:autofill:shadow-[inset_0_0_0_100px_#1e293b] dark:group-hover:placeholder:text-white dark:group-hover:autofill:shadow-[inset_0_0_0_100px_#3b82f6]`}
+            } bg-transparent py-2 pl-4 text-sm text-typo-600 placeholder:text-typo-400 placeholder:transition autofill:rounded-lg autofill:fill-red-200 focus:outline-none dark:text-white dark:placeholder:text-slate-600 dark:group-hover:placeholder:text-white`}
             type="text"
             name="search"
             value={searchInputText}
@@ -160,7 +182,7 @@ const Navbar = () => {
           </button>
           {/* Buttons divider */}
           {searchInputText && (
-            <div className="absolute right-[2.2rem] h-[1.4rem] w-[1px] bg-typo-400 dark:bg-slate-300 dark:group-hover:bg-slate-50"></div>
+            <div className="absolute right-[2.2rem] h-[1.4rem] w-[1px] bg-typo-400 dark:bg-slate-300 dark:group-focus-within:bg-slate-50 dark:group-hover:bg-slate-50"></div>
           )}
           <button>
             <Search
