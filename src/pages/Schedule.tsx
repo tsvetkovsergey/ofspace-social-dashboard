@@ -21,6 +21,9 @@ import ModalContent from '../components/ModalContent';
 import ModalText from '../components/ModalText';
 import ModalActions from '../components/ModalActions';
 import TextButton from '../components/TextButton';
+import { motion } from 'framer-motion';
+import { scaleOnTap } from '../data/animationSettings';
+import { Language } from '../Types/Settings';
 
 const INITIAL_MODAL = {
   addModalIsOpen: false,
@@ -35,6 +38,7 @@ const Schedule = () => {
   const [addEventInput, setAddEventInput] = useState('');
   const dateSelectRef = useRef<DateSelectArg | null>(null);
   const eventSelectRef = useRef<EventClickArg | null>(null);
+  const calendarRef = useRef<FullCalendar>(null);
 
   const language = useSelector(selectLanguage);
   const { t } = useNotNullableTranslation();
@@ -87,6 +91,9 @@ const Schedule = () => {
   };
 
   const handleDateClick = (selected: DateSelectArg) => {
+    // If date was clicked programatically ignore
+    if (!selected.jsEvent) return;
+
     dateSelectRef.current = selected;
     setModal({
       addModalIsOpen: true,
@@ -106,6 +113,13 @@ const Schedule = () => {
     });
   };
 
+  const handleEventListClick = (event: EventApi) => {
+    if (!calendarRef.current || !event.start) return;
+    const calendar = calendarRef.current.getApi();
+    calendar.gotoDate(event.start);
+    calendar.select(event);
+  };
+
   return (
     <>
       {/* Main part */}
@@ -114,29 +128,36 @@ const Schedule = () => {
           {/* CALENDAR SIDEBAR */}
           <div className="flex-[1_1_20%] rounded">
             <h5 className="mb-6 text-[1.75em]">{t('Events')}</h5>
+            {/* LIST OF EVENTS */}
             <ul>
               {currentEvents.map((event) => (
-                <li
-                  key={event.id}
-                  className="my-2 rounded bg-[#2c3e50] p-2 text-slate-100"
-                >
-                  <p>{event.title}</p>
-                  <p>
-                    {formatDate(event.startStr, {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric',
-                    })}
-                  </p>
+                <li key={event.id}>
+                  <motion.button
+                    className="mb-2 w-full rounded bg-[#2c3e50] p-2 text-left text-slate-100 transition hover:bg-[#1e2b37]"
+                    onClick={() => handleEventListClick(event)}
+                    {...scaleOnTap}
+                  >
+                    <p>{event.title}</p>
+                    <p>
+                      {formatDate(event.startStr, {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                        locale:
+                          language === Language.Russian ? 'ru-RU' : 'en-US',
+                      })}
+                    </p>
+                  </motion.button>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* CALENDAR */}
-          <div className="ml-4 flex-[1_1_100%] [&_.fc-daygrid-day.fc-day-today]:bg-primary-200 dark:[&_.fc-daygrid-day.fc-day-today]:bg-slate-700">
+          <div className="ml-4 h-[75vh] min-h-[30rem] flex-[1_1_100%] [&_.fc-daygrid-day.fc-day-today]:bg-primary-200 dark:[&_.fc-daygrid-day.fc-day-today]:bg-slate-700">
             <FullCalendar
-              height="75vh"
+              ref={calendarRef}
+              height="100%"
               locale={language === 'ru' ? ruLocale : undefined}
               plugins={[
                 dayGridPlugin,
@@ -158,13 +179,18 @@ const Schedule = () => {
               eventClick={handleEventClick}
               eventsSet={(events) => setCurrentEvents(events)}
               initialEvents={[
-                { id: '1234', title: 'All-day event', date: '2022-12-25' },
-                { id: '4321', title: 'Timed event', date: '2022-12-31' },
+                {
+                  id: 'ie-0001',
+                  title: 'Подготовить отчёт',
+                  date: '2023-06-25',
+                },
+                { id: 'ie-0002', title: 'Презентация', date: '2024-03-07' },
               ]}
             />
           </div>
         </div>
       </Card>
+
       {/* 2 modal windows in 1 */}
       {(modal.addModalIsOpen || modal.removeModalIsOpen) && (
         <Modal isOpen={true} onClose={handleCloseWindow}>
@@ -191,16 +217,6 @@ const Schedule = () => {
           </ModalActions>
         </Modal>
       )}
-      {/* 2 Modals in 1 */}
-      {/* {(modal.addModalIsOpen || modal.removeModalIsOpen) && (
-        <Modal
-          isOpen={true}
-          onClose={handleCloseWindow}
-          title={modal.title}
-          text={modal.text}
-          options={modal.options}
-        />
-      )} */}
     </>
   );
 };

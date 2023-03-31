@@ -53,7 +53,10 @@ i18next.use(initReactI18next).init({
         Sat: 'Sat',
         Sun: 'Sun',
         // Calendar
+        Calendar: 'Calendar',
         Events: 'Events',
+        // List
+        Metrics: 'Metrics',
         // Team Page
         Name: 'Name',
         Age: 'Age',
@@ -65,6 +68,8 @@ i18next.use(initReactI18next).init({
         user: 'user',
         // Geography
         Geography: 'Geo Data',
+        // 404
+        'Page not found': 'This page could not be found',
       },
     },
     ru: {
@@ -116,7 +121,10 @@ i18next.use(initReactI18next).init({
         Sat: 'Сб',
         Sun: 'Вс',
         // Calendar
+        Calendar: 'Календарь',
         Events: 'События',
+        // List
+        Metrics: 'Метрики',
         // Team Page
         Name: 'Имя',
         Age: 'Возраст',
@@ -128,6 +136,8 @@ i18next.use(initReactI18next).init({
         user: 'пользователь',
         // Geography
         Geography: 'Гео Данные',
+        // 404
+        'Page not found': 'Эта страница не найдена',
       },
     },
   },

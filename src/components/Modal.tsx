@@ -19,7 +19,7 @@ const Modal = ({ isOpen, onClose, children }: PropsWithChildren<Props>) => {
   const containerEl = document.getElementById('modal') || document.body;
   const modalEl = (
     <div
-      className={`fixed top-0 left-0 z-50 h-screen w-screen overflow-hidden ${
+      className={`fixed top-0 left-0 z-[10000] h-screen w-screen overflow-hidden ${
         mode === ThemeMode.Dark ? 'dark' : ''
       }`}
     >
