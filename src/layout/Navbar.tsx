@@ -30,7 +30,7 @@ interface LanguagePopup extends PopupItem {
 
 const ExpandMoreIconComponent = (): JSX.Element => (
   <ExpandMoreIcon
-    className="ml-2 text-typo-300 transition dark:text-slate-400"
+    className="ml-2 text-typo-300 dark:text-slate-400"
     sx={{ height: '1.4rem', width: '1.4rem' }}
   />
 );
@@ -113,10 +113,10 @@ const Navbar = () => {
           <h1 className="text-lg font-bold text-typo-800 dark:text-blue-500">
             {navbarTitle}
           </h1>
-          {/* Data */}
+          {/* Date */}
           <Link to="schedule">
             <motion.button
-              className="-ml-2 flex items-center rounded-lg py-1 px-2 text-typo-600 transition hover:bg-primary-200 hover:shadow-lg dark:text-slate-400 dark:hover:bg-blue-500 dark:hover:text-white dark:hover:shadow-none dark:[&:hover_svg]:text-white"
+              className="-ml-2 flex items-center rounded-lg py-1 px-2 text-typo-600 transition hover:bg-primary-200 hover:shadow-lg dark:text-slate-400 dark:hover:bg-blue-500 dark:hover:text-white dark:hover:shadow-none dark:[&:hover_svg]:text-white dark:[&_svg]:transition"
               {...scaleOnTap}
             >
               <p className="text-sm">

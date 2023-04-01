@@ -21,7 +21,7 @@ import ModalContent from '../components/ModalContent';
 import ModalText from '../components/ModalText';
 import ModalActions from '../components/ModalActions';
 import TextButton from '../components/TextButton';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { scaleOnTap } from '../data/animationSettings';
 import { Language } from '../Types/Settings';
 
@@ -192,31 +192,34 @@ const Schedule = () => {
       </Card>
 
       {/* 2 modal windows in 1 */}
-      {(modal.addModalIsOpen || modal.removeModalIsOpen) && (
-        <Modal isOpen={true} onClose={handleCloseWindow}>
-          <ModalTitle>{modal.title}</ModalTitle>
-          <ModalContent>
-            <ModalText>{modal.text}</ModalText>
-            {modal.addModalIsOpen && (
-              <input
-                value={addEventInput}
-                onChange={handleInputChange}
-                autoFocus
-                className="mt-5 w-full rounded-md border border-gray-300 py-1 px-2 text-gray-900 outline-none transition hover:border-gray-400 hover:shadow-lg focus:border-blue-400 focus:shadow-lg dark:border-slate-500 dark:bg-slate-800 dark:text-slate-300 dark:hover:border-slate-300 dark:focus:border-slate-300"
-              />
-            )}
-          </ModalContent>
-          <ModalActions className="[&>button]:text-xs [&>button]:font-medium [&>button]:text-gray-500 dark:[&>button]:text-slate-400">
-            <TextButton title={'CLOSE'} onClick={handleCloseWindow} />
-            {modal.addModalIsOpen && (
-              <TextButton title={'ADD'} onClick={handleAddEvent} />
-            )}
-            {modal.removeModalIsOpen && (
-              <TextButton title={'DELETE'} onClick={handleRemoveEvent} />
-            )}
-          </ModalActions>
-        </Modal>
-      )}
+
+      <AnimatePresence>
+        {(modal.addModalIsOpen || modal.removeModalIsOpen) && (
+          <Modal onClose={handleCloseWindow}>
+            <ModalTitle>{modal.title}</ModalTitle>
+            <ModalContent>
+              <ModalText>{modal.text}</ModalText>
+              {modal.addModalIsOpen && (
+                <input
+                  value={addEventInput}
+                  onChange={handleInputChange}
+                  autoFocus
+                  className="mt-5 w-full rounded-md border border-gray-300 py-1 px-2 text-gray-900 outline-none transition hover:border-gray-400 hover:shadow-lg focus:border-blue-400 focus:shadow-lg dark:border-slate-500 dark:bg-slate-800 dark:text-slate-300 dark:hover:border-slate-300 dark:focus:border-slate-300"
+                />
+              )}
+            </ModalContent>
+            <ModalActions className="[&>button]:text-xs [&>button]:font-medium [&>button]:text-gray-500 dark:[&>button]:text-slate-400">
+              <TextButton title={'CLOSE'} onClick={handleCloseWindow} />
+              {modal.addModalIsOpen && (
+                <TextButton title={'ADD'} onClick={handleAddEvent} />
+              )}
+              {modal.removeModalIsOpen && (
+                <TextButton title={'DELETE'} onClick={handleRemoveEvent} />
+              )}
+            </ModalActions>
+          </Modal>
+        )}
+      </AnimatePresence>
     </>
   );
 };
