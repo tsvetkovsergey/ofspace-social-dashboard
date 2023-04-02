@@ -140,12 +140,12 @@ const Schedule = () => {
     <>
       {/* Main part */}
       <Card>
-        <div className="flex justify-between">
+        <div className="flex h-[75vh] min-h-[30rem] justify-between">
           {/* CALENDAR SIDEBAR */}
-          <div className="flex-[1_1_20%] rounded">
+          <div className="flex flex-[1_1_20%] flex-col">
             <h5 className="mb-6 text-[1.75em]">{t('Events')}</h5>
             {/* LIST OF EVENTS */}
-            <ul className="h-auto overflow-y-scroll">
+            <ul className="overflow-y-scroll">
               {currentEvents.map((event) => (
                 <li key={event.id}>
                   <motion.button
@@ -170,7 +170,7 @@ const Schedule = () => {
           </div>
 
           {/* CALENDAR */}
-          <div className="ml-4 h-[75vh] min-h-[30rem] flex-[1_1_100%] [&_.fc-daygrid-day.fc-day-today]:bg-primary-200 dark:[&_.fc-daygrid-day.fc-day-today]:bg-slate-700">
+          <div className="ml-4 flex-[1_1_100%] [&_.fc-daygrid-day.fc-day-today]:bg-primary-200 dark:[&_.fc-daygrid-day.fc-day-today]:bg-slate-700">
             <FullCalendar
               ref={calendarRef}
               height="100%"
