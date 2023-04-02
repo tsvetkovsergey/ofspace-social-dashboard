@@ -55,6 +55,11 @@ i18next.use(initReactI18next).init({
         // Calendar
         Calendar: 'Calendar',
         Events: 'Events',
+        'Add New Event': 'Add New Event',
+        'Enter a new title': 'Please enter a new title for your event:',
+        'Remove Event': 'Remove Event',
+        'Want to delete': 'Are you sure you want to delete the event',
+        'Cannot be empty': 'This field cannot be empty.',
         // List
         Metrics: 'Metrics',
         // Team Page
@@ -123,6 +128,11 @@ i18next.use(initReactI18next).init({
         // Calendar
         Calendar: 'Календарь',
         Events: 'События',
+        'Add New Event': 'Добавить Новое Событие',
+        'Enter a new title': 'Пожалуйста, введите название для нового события:',
+        'Remove Event': 'Удалить Событие',
+        'Want to delete': 'Вы уверены, что хотите удалить событие',
+        'Cannot be empty': 'Это поле не может быть пустым.',
         // List
         Metrics: 'Метрики',
         // Team Page

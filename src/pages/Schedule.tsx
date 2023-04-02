@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, useRef } from 'react';
+import { ChangeEvent, useState, useRef, useEffect } from 'react';
 import {
   DateSelectArg,
   EventClickArg,
@@ -30,6 +30,7 @@ const INITIAL_MODAL = {
   removeModalIsOpen: false,
   title: '',
   text: '',
+  error: '',
 };
 
 const Schedule = () => {
@@ -38,10 +39,16 @@ const Schedule = () => {
   const [addEventInput, setAddEventInput] = useState('');
   const dateSelectRef = useRef<DateSelectArg | null>(null);
   const eventSelectRef = useRef<EventClickArg | null>(null);
+  const removeButtonRef = useRef<HTMLButtonElement | null>(null);
   const calendarRef = useRef<FullCalendar>(null);
 
   const language = useSelector(selectLanguage);
   const { t } = useNotNullableTranslation();
+
+  useEffect(() => {
+    if (!removeButtonRef.current) return;
+    removeButtonRef.current.focus();
+  }, [modal.removeModalIsOpen]);
 
   const handleCloseWindow = () => {
     setModal(INITIAL_MODAL);
@@ -50,6 +57,7 @@ const Schedule = () => {
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setAddEventInput(e.target.value);
+    setModal({ ...modal, error: '' });
   };
 
   const handleAddEvent = () => {
@@ -69,13 +77,19 @@ const Schedule = () => {
         end: selected.endStr,
         allDay: selected.allDay,
       });
+
+      // Close Modal Window and reset
+      // input value and dateSelectRef
+      handleCloseWindow();
+      // setAddEventInput('');
+      dateSelectRef.current = null;
     }
 
-    // Close Modal Window and reset
-    // input value and dateSelectRef
-    handleCloseWindow();
-    setAddEventInput('');
-    dateSelectRef.current = null;
+    // If entered event name isn't valid
+    // show error message
+    if (!addEventInput.trim()) {
+      setModal({ ...modal, error: t('Cannot be empty') });
+    }
   };
 
   const handleRemoveEvent = () => {
@@ -98,8 +112,9 @@ const Schedule = () => {
     setModal({
       addModalIsOpen: true,
       removeModalIsOpen: false,
-      title: 'Add New Event',
-      text: 'Please enter a new title for your event:',
+      title: t('Add New Event'),
+      text: t('Enter a new title'),
+      error: '',
     });
   };
 
@@ -108,8 +123,9 @@ const Schedule = () => {
     setModal({
       addModalIsOpen: false,
       removeModalIsOpen: true,
-      title: 'Remove Event',
-      text: `Are you sure you want to delete the event '${selected.event.title}'?`,
+      title: t('Remove Event'),
+      text: `${t('Want to delete')} '${selected.event.title}'?`,
+      error: '',
     });
   };
 
@@ -129,7 +145,7 @@ const Schedule = () => {
           <div className="flex-[1_1_20%] rounded">
             <h5 className="mb-6 text-[1.75em]">{t('Events')}</h5>
             {/* LIST OF EVENTS */}
-            <ul>
+            <ul className="h-auto overflow-y-scroll">
               {currentEvents.map((event) => (
                 <li key={event.id}>
                   <motion.button
@@ -192,7 +208,6 @@ const Schedule = () => {
       </Card>
 
       {/* 2 modal windows in 1 */}
-
       <AnimatePresence>
         {(modal.addModalIsOpen || modal.removeModalIsOpen) && (
           <Modal onClose={handleCloseWindow}>
@@ -200,12 +215,24 @@ const Schedule = () => {
             <ModalContent>
               <ModalText>{modal.text}</ModalText>
               {modal.addModalIsOpen && (
-                <input
-                  value={addEventInput}
-                  onChange={handleInputChange}
-                  autoFocus
-                  className="mt-5 w-full rounded-md border border-gray-300 py-1 px-2 text-gray-900 outline-none transition hover:border-gray-400 hover:shadow-lg focus:border-blue-400 focus:shadow-lg dark:border-slate-500 dark:bg-slate-800 dark:text-slate-300 dark:hover:border-slate-300 dark:focus:border-slate-300"
-                />
+                <>
+                  <input
+                    value={addEventInput}
+                    onChange={handleInputChange}
+                    onKeyDown={(e) => {
+                      if (e.code === 'Enter') handleAddEvent();
+                    }}
+                    autoFocus
+                    className={`${
+                      modal.error
+                        ? 'border-red-500 bg-red-100 dark:border-red-500 dark:bg-red-800/50'
+                        : 'border-gray-300 hover:border-gray-400 focus:border-blue-400 dark:border-slate-500 dark:bg-slate-800 dark:hover:border-slate-300 dark:focus:border-slate-300'
+                    } mt-5 w-full rounded-md border py-1 px-2 text-gray-900 outline-none transition hover:shadow-lg focus:shadow-lg dark:text-slate-300 `}
+                  />
+                  {modal.error && (
+                    <p className="pt-1 text-sm text-red-500">{modal.error}</p>
+                  )}
+                </>
               )}
             </ModalContent>
             <ModalActions className="[&>button]:text-xs [&>button]:font-medium [&>button]:text-gray-500 dark:[&>button]:text-slate-400">
@@ -214,7 +241,11 @@ const Schedule = () => {
                 <TextButton title={'ADD'} onClick={handleAddEvent} />
               )}
               {modal.removeModalIsOpen && (
-                <TextButton title={'DELETE'} onClick={handleRemoveEvent} />
+                <TextButton
+                  buttonRef={removeButtonRef}
+                  title={'DELETE'}
+                  onClick={handleRemoveEvent}
+                />
               )}
             </ModalActions>
           </Modal>

@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { KeyboardEventHandler, PropsWithChildren, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import Card from './Card';
 import { useAppSelector } from '../store/hooks';
@@ -11,17 +11,24 @@ type Props = {
 };
 
 const Modal = ({ onClose, children }: PropsWithChildren<Props>) => {
-  // if (!isOpen) return null;
-
   const mode = useAppSelector(selectMode);
-
   const containerEl = document.getElementById('modal') || document.body;
+
+  // Listen to Esc key to close the modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   const modalEl = (
     <motion.div
       className={`fixed top-0 left-0 z-[10000] h-screen w-screen overflow-hidden ${
         mode === ThemeMode.Dark ? 'dark' : ''
       }`}
-      key="modal"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
